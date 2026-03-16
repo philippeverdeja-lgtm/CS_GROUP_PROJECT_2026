@@ -3,7 +3,7 @@ import streamlit as st
 import time as time 
 
 
-st.set_page_config(page_title="Stock Comparator", layout="centered")
+st.set_page_config(page_title="Stock Comparator", layout="wide")
 st.title("Comparator of 2 stocks (CS_PROJECT_1)")
 
 METRICS = [
