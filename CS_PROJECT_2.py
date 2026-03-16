@@ -10,9 +10,9 @@ METRICS = [
     ("Profit Margin",  "ProfitMargin"),
     ("ROE",            "ReturnOnEquityTTM"),
     ("Revenue Growth", "QuarterlyRevenueGrowthYOY"),
-    ("Debt/Equity",    "DebtToEquityRatio"),
-    ("Current Ratio",  "CurrentRatio"),
-    ("Free Cash Flow", "OperatingCashflowTTM"),
+    ("Price/Book",         "PriceToBookRatio"),        # replaces Debt/Equity
+    ("EV/EBITDA",          "EVToEBITDA"),              # replaces Current Ratio
+    ("EBITDA",             "EBITDA"),     
 ]
 
 @st.cache_data(ttl=600)
