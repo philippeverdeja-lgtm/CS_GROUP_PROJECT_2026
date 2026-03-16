@@ -5,30 +5,29 @@ st.set_page_config(page_title="Stock Comparator", layout="centered")
 st.title("Comparator of 2 stocks (CS_PROJECT_1)")
 
 METRICS = [
-    ("P/E Ratio",      "pe"),
-    ("Debt/Equity",    "debtToEquity"),
-    ("ROE",            "roe"),
-    ("Free Cash Flow", "freeCashFlow"),
-    ("Profit Margin",  "profitMargin"),
-    ("EPS",            "eps"),
-    ("Current Ratio",  "currentRatio"),
+    ("P/E Ratio",      "PERatio"),
+    ("EPS",            "EPS"),
+    ("Profit Margin",  "ProfitMargin"),
+    ("ROE",            "ReturnOnEquityTTM"),
+    ("Revenue Growth", "QuarterlyRevenueGrowthYOY"),
+    ("Debt/Equity",    "DebtToEquityRatio"),
+    ("Current Ratio",  "CurrentRatio"),
+    ("Free Cash Flow", "OperatingCashflowTTM"),
 ]
 
 @st.cache_data(ttl=600)
 def get_info(ticker_symbol):
-    api_key = st.secrets["FMP_API_KEY"]
-    url = f"https://financialmodelingprep.com/api/v3/profile/{ticker_symbol}?apikey={api_key}"
+    api_key = st.secrets["AV_API_KEY"]
+    url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker_symbol}&apikey={api_key}"
     r = requests.get(url)
-    data = r.json()
-    st.write (data)
-    return data[0] if data else {}
+    return r.json()
 
 def render_header(info, ticker_symbol):
-    st.subheader(info.get("companyName", ticker_symbol))
+    st.subheader(info.get("Name", ticker_symbol))
     st.write(f"**Ticker:** {ticker_symbol.upper()}")
 
 def render_metric(label, value):
-    st.metric(label, value if value is not None else "N/A")
+    st.metric(label, value if value not in (None, "None", "-") else "N/A")
 
 col1, col2 = st.columns(2)
 with col1:
