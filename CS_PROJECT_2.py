@@ -1,5 +1,7 @@
 import requests
 import streamlit as st
+import time as time 
+
 
 st.set_page_config(page_title="Stock Comparator", layout="centered")
 st.title("Comparator of 2 stocks (CS_PROJECT_1)")
@@ -37,6 +39,7 @@ with col2:
 
 if ticker1 and ticker2:
     info1 = get_info(ticker1)
+    time.sleep (12)
     info2 = get_info(ticker2)
 
     col1, col2 = st.columns(2)
