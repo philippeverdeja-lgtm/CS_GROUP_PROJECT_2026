@@ -22,6 +22,7 @@ def get_info(ticker_symbol):
     api_key = st.secrets["AV_API_KEY"]
     url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker_symbol}&apikey={api_key}"
     r = requests.get(url)
+    data = r.josn()
     return r.json()
 
 def render_header(info, ticker_symbol):
@@ -39,7 +40,6 @@ with col2:
 
 if ticker1 and ticker2:
     info1 = get_info(ticker1)
-    time.sleep (12)
     info2 = get_info(ticker2)
 
     col1, col2 = st.columns(2)
