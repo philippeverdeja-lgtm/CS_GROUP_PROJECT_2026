@@ -16,7 +16,13 @@ METRICS = [
     ("Current Ratio",   "currentRatio"),
 ]
 
+#Cache decorator
+@st.cache_data(ttl=600)
+def get_info(ticker):
+    stock = yf.Ticker(ticker)
+    return stock.info
 
+#columns UI
 col1, col2 = st.columns(2)
 with col1:
     ticker1 = st.text_input("First Ticker (e.g. AAPL)")
@@ -24,11 +30,7 @@ with col2:
     ticker2 = st.text_input("Second Ticker (e.g. MSFT)")
 
 
-#Cache decorator
-@st.cache_data(ttl=600)
-def get_info(ticker):
-    stock = yf.Ticker(ticker)
-    return stock.info
+
 
 def get_info(ticker_symbol):
     stock = yf.Ticker(ticker_symbol)
