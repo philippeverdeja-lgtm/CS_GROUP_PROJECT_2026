@@ -1,14 +1,9 @@
 import yfinance as yf
 import streamlit as st
 
+
 st.set_page_config(page_title="Stock Comparator", layout="centered")
 st.title("Comparator of 2 stocks (CS_PROJECT_1)")
-
-col1, col2 = st.columns(2)
-with col1:
-    ticker1 = st.text_input("First Ticker (e.g. AAPL)")
-with col2:
-    ticker2 = st.text_input("Second Ticker (e.g. MSFT)")
 
 METRICS = [
     ("P/E Ratio",       "trailingPE"),
@@ -21,9 +16,24 @@ METRICS = [
     ("Current Ratio",   "currentRatio"),
 ]
 
+
+col1, col2 = st.columns(2)
+with col1:
+    ticker1 = st.text_input("First Ticker (e.g. AAPL)")
+with col2:
+    ticker2 = st.text_input("Second Ticker (e.g. MSFT)")
+
+
+#Cache decorator
+@st.cache_data(ttl=600)
+def get_info(ticker):
+    stock = yf.Ticker(ticker)
+    return stock.info
+
 def get_info(ticker_symbol):
     stock = yf.Ticker(ticker_symbol)
     return stock.info
+
 
 def render_header(info, ticker_symbol):
     st.subheader(info.get("longName", ticker_symbol))
@@ -31,6 +41,8 @@ def render_header(info, ticker_symbol):
 
 def render_metric(label, value):
     st.metric(label, value if value is not None else "N/A")
+
+
 
 if ticker1 and ticker2:
     info1 = get_info(ticker1)
