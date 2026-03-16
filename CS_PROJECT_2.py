@@ -1,8 +1,8 @@
 import yfinance as yf #import the yahoo finance module
 
-import streamlit as st 
+import streamlit as st
 
-st.title("Comparator of 2 stocks")
+st.title("Comparator of 2 stocks (CS_PROJECT_2)")
 
 st.text_input("type in a first ticker")
 

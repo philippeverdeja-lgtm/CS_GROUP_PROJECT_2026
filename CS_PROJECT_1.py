@@ -2,7 +2,7 @@ import yfinance as yf
 import streamlit as st
 
 st.set_page_config(page_title="Stock Comparator", layout="centered")
-st.title("Comparator of 2 stocks")
+st.title("Comparator of 2 stocks (CS_PROJECT_1)")
 
 col1, col2 = st.columns(2)
 with col1:
