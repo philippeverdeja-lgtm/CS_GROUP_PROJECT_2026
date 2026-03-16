@@ -23,7 +23,11 @@ def get_info(ticker_symbol):
     url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker_symbol}&apikey={api_key}"
     r = requests.get(url)
     data = r.josn()
-    return r.json()
+    
+    if "Name" not in data:
+        st.cache_data.clear()
+        return {}
+    return data
 
 def render_header(info, ticker_symbol):
     st.subheader(info.get("Name", ticker_symbol))
