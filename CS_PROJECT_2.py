@@ -20,6 +20,7 @@ def get_info(ticker_symbol):
     url = f"https://financialmodelingprep.com/api/v3/profile/{ticker_symbol}?apikey={api_key}"
     r = requests.get(url)
     data = r.json()
+    st.write (data)
     return data[0] if data else {}
 
 def render_header(info, ticker_symbol):
