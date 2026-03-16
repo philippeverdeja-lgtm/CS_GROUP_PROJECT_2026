@@ -22,7 +22,7 @@ def get_info(ticker_symbol):
     api_key = st.secrets["AV_API_KEY"]
     url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker_symbol}&apikey={api_key}"
     r = requests.get(url)
-    data = r.josn()
+    data = r.json()
     
     if "Name" not in data:
         st.cache_data.clear()
