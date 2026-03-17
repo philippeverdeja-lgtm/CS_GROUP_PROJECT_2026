@@ -6,7 +6,7 @@ st.title("Stock Comparator")
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
 
-@st.cache_data(ttl=600)
+@st.cache_data(ttl=3600)
 def get_stock_info(ticker):
     data = Ticker(ticker).financial_data
     return data.get(ticker.upper(), {})
