@@ -1,20 +1,19 @@
 import streamlit as st
-import yahooquery as Ticker
+from yahooquery import Ticker
 
 st.title("Stock Comparator")
 
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
 
-@st.cache_data(ttl=600)                  #chat gpt
+@st.cache_data(ttl=600)
 def get_stock_info(ticker):
-    fi = yf.Ticker(ticker).fast_info
-    return dict(fi)
+    data = Ticker(ticker).financial_data
+    return data.get(ticker.upper(), {})
 
 if ticker1 and ticker2:
     stock1 = get_stock_info(ticker1)
     stock2 = get_stock_info(ticker2)
-
 
     col1, col2 = st.columns(2)
 
@@ -39,4 +38,3 @@ if ticker1 and ticker2:
         st.write("Price/Book:", stock2.get("priceToBook"))
         st.write("EV/EBITDA:", stock2.get("enterpriseToEbitda"))
         st.write("EBITDA:", stock2.get("ebitda"))
-
