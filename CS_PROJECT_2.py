@@ -38,11 +38,14 @@ def get_stock_info(ticker):
 
 #only run program if both inputs exist
 if ticker1 and ticker2:
+
+    #put the stock input in the definition get_stock_info
     stock1 = get_stock_info(ticker1)
     stock2 = get_stock_info(ticker2)
 
-
-        #UX two columns
+         #UX two columns
+    
+    
     col1, col2 = st.columns(2)
 
 
