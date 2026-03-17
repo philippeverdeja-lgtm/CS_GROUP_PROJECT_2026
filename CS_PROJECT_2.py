@@ -29,7 +29,7 @@ if ticker1 and ticker2:
         st.write("EV/EBITDA:", stock1.get("enterpriseToEbitda"))
         st.write("EBITDA:", stock1.get("ebitda"))
 
-        with col2:
+    with col2:
         st.header(ticker2.upper())
         st.write("Profit Margin:", stock2.get("profitMargins"))
         st.write("Revenue Growth:", stock2.get("revenueGrowth"))
