@@ -35,8 +35,10 @@ def get_info(symbol: str) -> dict:
 
     # Grab company name from price module
     price = t.price
-    if isinstance(price, dict) and symbol in price:
+    if isinstance(price, dict) and symbol in price and isinstance(price[symbol], dict):
         merged["longName"] = price[symbol].get("longName", symbol)
+    else:
+        merged ["longName"] = symbol
 
     return merged
 
@@ -66,7 +68,7 @@ def render_metric(label: str, info: dict):
     st.metric(label, format_value(label, raw))
 
 
-# ── UI ──────────────────────────────────────────────────────────────────────
+# interface
 
 col1, col2 = st.columns(2)
 with col1:
