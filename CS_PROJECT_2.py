@@ -1,7 +1,9 @@
+
+# import modules, also put them in requirements
 import streamlit as st
 from yahooquery import Ticker
 
-st.title("Stock Comparator")
+st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
