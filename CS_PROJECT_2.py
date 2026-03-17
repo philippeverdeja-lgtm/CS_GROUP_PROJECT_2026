@@ -49,7 +49,7 @@ if ticker1 and ticker2:
         #column one 
     with col1:
         st.header(ticker1.upper())
-        st.subheader("Profit Margin:", stock1.get("profitMargins"))
+        st.write("Profit Margin:", stock1.get("profitMargins"))
         st.write("Revenue Growth:", stock1.get("revenueGrowth"))
         st.write("Return on Equity:", stock1.get("returnOnEquity"))
         st.write("P/E Ratio:", stock1.get("trailingPE"))
