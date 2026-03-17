@@ -11,7 +11,7 @@ if ticker1 and ticker2:
     stock2 = Ticker(ticker2).financial_data[ticker2.upper()]
 
     if not isinstance(stock1, dict) or not isinstance(stock2, dict):
-        st.error("One or both tickers could not be found.")
+        st.error("One or both tickers could not be found, yahooquery doesn't work properly")
     else:
         col1, col2 = st.columns(2)
 
