@@ -1,5 +1,5 @@
 import streamlit as st
-from yahooquery import Ticker
+import yfinance as yf
 
 st.title("Stock Comparator")
 
@@ -7,12 +7,32 @@ ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
 
 if ticker1 and ticker2:
-    t1 = Ticker(ticker1)
-    t2 = Ticker(ticker2)
+    stock1 = yf.Ticker(ticker1).info
+    stock2 = yf.Ticker(ticker2).info
 
-    stock1 = t1.financial_data[ticker1.upper()]
-    stock2 = t2.financial_data[ticker2.upper()]
+    if not stock1.get("symbol") or not stock2.get("symbol"):
+        st.error("One or both tickers could not be found.")
+    else:
+        col1, col2 = st.columns(2)
 
-    # DEBUG - shows exactly what Yahoo is returning
-    st.write("DEBUG stock1:", stock1)
-    st.write("DEBUG stock2:", stock2)
+        with col1:
+            st.header(ticker1.upper())
+            st.write("Profit Margin:", stock1.get("profitMargins"))
+            st.write("Revenue Growth:", stock1.get("revenueGrowth"))
+            st.write("Return on Equity:", stock1.get("returnOnEquity"))
+            st.write("P/E Ratio:", stock1.get("trailingPE"))
+            st.write("EPS:", stock1.get("trailingEps"))
+            st.write("Price/Book:", stock1.get("priceToBook"))
+            st.write("EV/EBITDA:", stock1.get("enterpriseToEbitda"))
+            st.write("EBITDA:", stock1.get("ebitda"))
+
+        with col2:
+            st.header(ticker2.upper())
+            st.write("Profit Margin:", stock2.get("profitMargins"))
+            st.write("Revenue Growth:", stock2.get("revenueGrowth"))
+            st.write("Return on Equity:", stock2.get("returnOnEquity"))
+            st.write("P/E Ratio:", stock2.get("trailingPE"))
+            st.write("EPS:", stock2.get("trailingEps"))
+            st.write("Price/Book:", stock2.get("priceToBook"))
+            st.write("EV/EBITDA:", stock2.get("enterpriseToEbitda"))
+            st.write("EBITDA:", stock2.get("ebitda"))
