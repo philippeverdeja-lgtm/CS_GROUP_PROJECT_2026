@@ -6,9 +6,13 @@ st.title("Stock Comparator")
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
 
+@st.cache_data(ttl=300)
+def get_stock_info(ticker):
+    return yf.Ticker(ticker).info
+
 if ticker1 and ticker2:
-    stock1 = yf.Ticker(ticker1).info
-    stock2 = yf.Ticker(ticker2).info
+    stock1 = get_stock_info(ticker1)
+    stock2 = get_stock_info(ticker2)
 
     if not isinstance(stock1, dict) or not isinstance(stock2, dict):
         st.error("One or both tickers could not be found.")
