@@ -35,7 +35,7 @@ def get_info(symbol: str) -> dict:
 
     # Grab company name from price module
     price = t.price
-    if isinstance(price, dict) and symbol in price:
+    if isinstance(price, dict) and symbol in price and isinstance(price[symbol], dict):
         merged["longName"] = price[symbol].get("longName", symbol)
 
     return merged
