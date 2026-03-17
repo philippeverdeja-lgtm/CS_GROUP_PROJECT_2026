@@ -1,5 +1,5 @@
 import streamlit as st
-import yfinance as yf
+from yahooquery import Ticker
 
 st.title("Stock Comparator")
 
@@ -7,10 +7,10 @@ ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
 
 if ticker1 and ticker2:
-    stock1 = yf.Ticker(ticker1).info
-    stock2 = yf.Ticker(ticker2).info
+    stock1 = Ticker(ticker1).financial_data[ticker1.upper()]
+    stock2 = Ticker(ticker2).financial_data[ticker2.upper()]
 
-    if not stock1.get("symbol") or not stock2.get("symbol"):
+    if not isinstance(stock1, dict) or not isinstance(stock2, dict):
         st.error("One or both tickers could not be found.")
     else:
         col1, col2 = st.columns(2)
