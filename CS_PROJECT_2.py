@@ -1,5 +1,5 @@
 import streamlit as st
-import yfinance as yf
+import yahooquery as Ticker
 
 st.title("Stock Comparator")
 
