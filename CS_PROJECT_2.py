@@ -6,10 +6,15 @@ st.title("Stock Comparator")
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
 
-@st.cache_data(ttl=3600)
+@st.cache_data(ttl=600)
 def get_stock_info(ticker):
-    data = Ticker(ticker).financial_data
-    return data.get(ticker.upper(), {})
+    t = Ticker(ticker)
+
+    financial_data = t.financial_data.get(ticker.upper(), {})
+    key_stats = t.key_stats.get(ticker.upper(), {})
+    summary_detail = t.summary_detail.get(ticker.upper(), {})
+
+    return {**financial_data, **key_stats, **summary_detail}
 
 if ticker1 and ticker2:
     stock1 = get_stock_info(ticker1)
