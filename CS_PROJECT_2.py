@@ -37,8 +37,7 @@ def get_info(symbol: str) -> dict:
     price = t.price
     if isinstance(price, dict) and symbol in price and isinstance(price[symbol], dict):
         merged["longName"] = price[symbol].get("longName", symbol)
-    else:
-        merged ["longName"] = symbol
+    
 
     return merged
 
