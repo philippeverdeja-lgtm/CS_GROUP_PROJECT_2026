@@ -7,6 +7,7 @@ from yahooquery import Ticker
 st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 
 
+
 #text inputs for tickers
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
@@ -19,12 +20,15 @@ ticker2 = st.text_input("Second stock (e.g. MSFT)")
 #definition of function
 def get_stock_info(ticker):
 
-    #creates yahoo finance object for this stock
+    
     ticker = ticker.upper() #all upercase tickers now
+
+    #creates yahoo finance object for this stock, does not call the data yet
+    #but creates the "interface"
     t = Ticker(ticker)
 
-    #ticker.upper --> every input is upper case letters
-    financial_data = t.financial_data.get(ticker, {}) #probaility, margins
+    #get.ticekr gets my data
+    financial_data = t.financial_data.get(ticker, {}) #t.financial_data 
 
 
     key_stats = t.key_stats.get(ticker, {}) # ratios evaluations
@@ -40,8 +44,10 @@ def get_stock_info(ticker):
 #only run program if both inputs exist
 if ticker1 and ticker2:
 
-    #put the stock input in the definition get_stock_info
+    #put the the ticker in the definition get_stock_info and gets all the data from yahooquery
+    #this is where the program calls the informations
     stock1 = get_stock_info(ticker1)
+
     stock2 = get_stock_info(ticker2)
 
          #UX two columns
@@ -51,8 +57,11 @@ if ticker1 and ticker2:
 
 
         #column one 
+        #ticker 1 from input 1 gets in the header
     with col1:
         st.header(ticker1.upper())
+        #stock1 this is where the program recalls the infromations it already has from get_stock_info and
+        #now only calls some elements from it 
         st.write("Profit Margin:", stock1.get("profitMargins"))
         st.write("Revenue Growth:", stock1.get("revenueGrowth"))
         st.write("Return on Equity:", stock1.get("returnOnEquity"))
@@ -62,6 +71,8 @@ if ticker1 and ticker2:
         st.write("EV/EBITDA:", stock1.get("enterpriseToEbitda"))
         st.write("EBITDA:", stock1.get("ebitda"))
 
+
+    #same as with col1
     with col2:
         st.header(ticker2.upper())
         st.write("Profit Margin:", stock2.get("profitMargins"))
