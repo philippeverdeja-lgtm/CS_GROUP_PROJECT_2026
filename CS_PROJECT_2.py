@@ -13,23 +13,24 @@ ticker2 = st.text_input("Second stock (e.g. MSFT)")
 
 
 #from chatGPT cache function --> saves results for 10 min (600 sec), if not 
-#every refresh is a new call
+#every refresh is a new call, crashed often before
 @st.cache_data(ttl=600)
 
-#definition of function (Chat GPT)
+#definition of function
 def get_stock_info(ticker):
 
     #creates yahoo finance object for this stock
+    ticker = ticker.upper() #all upercase tickers now
     t = Ticker(ticker)
 
     #ticker.upper --> every input is upper case letters
-    financial_data = t.financial_data.get(ticker.upper(), {}) #probaility, margins
+    financial_data = t.financial_data.get(ticker, {}) #probaility, margins
 
 
-    key_stats = t.key_stats.get(ticker.upper(), {}) # ratios evaluations
+    key_stats = t.key_stats.get(ticker, {}) # ratios evaluations
 
 
-    summary_detail = t.summary_detail.get(ticker.upper(), {}) #market data
+    summary_detail = t.summary_detail.get(ticker, {}) #market data
 
 
         #combines dictionaries into one (Chat gpt)
