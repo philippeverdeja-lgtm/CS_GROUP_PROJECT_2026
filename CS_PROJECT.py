@@ -63,8 +63,6 @@ if ticker1 or ticker2 or ticker3 or ticker4:
     stock1 = get_stock_info(ticker1)
 
     stock2 = get_stock_info(ticker2)
-
-        
     
     stock3 = get_stock_info(ticker3)
 
