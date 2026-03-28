@@ -9,6 +9,8 @@ st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 #text inputs for tickers
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")
+ticker3 = st.text_input("Third stock (e.g. GOOG)")
+ticker4 = st.text_input("Fourth stock (e.g. AMZN)")
 
 
 #from chatGPT cache function --> saves results for 10 min (600 sec), if not 
@@ -51,11 +53,13 @@ if ticker1 and ticker2:
          #UX two columns
     
     
-    col1, col2 = st.columns(2)
+    col1, col2, col3, col4 = st.columns(4)
 
 
         #column one 
         #ticker 1 from input 1 gets in the header
+
+
     with col1:
         st.header(ticker1.upper())
         #stock1 this is where the program recalls the infromations it already has from get_stock_info and
