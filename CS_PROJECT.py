@@ -90,7 +90,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
 
     with col1:
-        st.header(ticker1.upper())
+        st.subheader(ticker1.upper())
         #stock1 this is where the program recalls the infromations it already has from get_stock_info and
         #now only calls some elements from it 
         price1 = stock1.get("currentPrice")
@@ -107,7 +107,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
     #same as with col1
     with col2:
-        st.header(ticker2.upper())
+        st.subheader(ticker2.upper())
         price2 = stock2.get("currentPrice")
         st.subheader(f"Stock Price: {price2}")
         st.write("Profit Margin:", stock2.get("profitMargins"))
@@ -120,7 +120,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.write("EBITDA:", stock2.get("ebitda"))
 
     with col3:
-        st.header(ticker3.upper())
+        st.subheader(ticker3.upper())
         price3 = stock3.get("currentPrice")
         st.subheader(f"Stock Price: {price3}")
         st.write("Profit Margin:", stock3.get("profitMargins"))
@@ -133,7 +133,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.write("EBITDA:", stock3.get("ebitda"))
 
     with col4:
-        st.header(ticker4.upper())
+        st.subheader(ticker4.upper())
         price4 = stock4.get("currentPrice")
         st.subheader(f"Stock Price: {price4}")
         st.write("Profit Margin:", stock4.get("profitMargins"))
