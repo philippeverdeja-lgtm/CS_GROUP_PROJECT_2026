@@ -3,6 +3,9 @@
 import streamlit as st
 from yahooquery import Ticker
 
+
+
+st.set_page_config(layout="wide")
 # title of the website
 st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 
