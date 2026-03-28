@@ -93,7 +93,9 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.header(ticker1.upper())
         #stock1 this is where the program recalls the infromations it already has from get_stock_info and
         #now only calls some elements from it 
-        st.write("Current Price:", stock1.get("currentPrice"))
+        price1 = stock1.get("currentPrice")
+        st.header(price1)
+        #st.write("Current Price:", stock1.get("currentPrice"))
         st.write("Profit Margin:", stock1.get("profitMargins"))
         st.write("Revenue Growth:", stock1.get("revenueGrowth"))
         st.write("Return on Equity:", stock1.get("returnOnEquity"))
