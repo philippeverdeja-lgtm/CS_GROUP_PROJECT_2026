@@ -95,6 +95,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         #now only calls some elements from it 
         price1 = stock1.get("currentPrice")
         st.subheader(f"Stock Price: {price1}") 
+
         st.write("Profit Margin:", stock1.get("profitMargins"))
         st.write("Revenue Growth:", stock1.get("revenueGrowth"))
         st.write("Return on Equity:", stock1.get("returnOnEquity"))
@@ -108,8 +109,10 @@ if ticker1 or ticker2 or ticker3 or ticker4:
     #same as with col1
     with col2:
         st.subheader(ticker2.upper())
+
         price2 = stock2.get("currentPrice")
         st.subheader(f"Stock Price: {price2}")
+
         st.write("Profit Margin:", stock2.get("profitMargins"))
         st.write("Revenue Growth:", stock2.get("revenueGrowth"))
         st.write("Return on Equity:", stock2.get("returnOnEquity"))
@@ -120,10 +123,13 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.write("EBITDA:", stock2.get("ebitda"))
 
     with col3:
+        
         st.subheader(ticker3.upper())
+
         price3 = stock3.get("currentPrice")
         st.subheader(f"Stock Price: {price3}")
-        st.write("Profit Margin:", stock3.get("profitMargins"))
+
+        st.write("Profit Margin:", str(stock3.get("profitMargins")))
         st.write("Revenue Growth:", stock3.get("revenueGrowth"))
         st.write("Return on Equity:", stock3.get("returnOnEquity"))
         st.write("P/E Ratio:", stock3.get("trailingPE"))
