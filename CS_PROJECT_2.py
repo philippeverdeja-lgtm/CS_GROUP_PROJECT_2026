@@ -7,10 +7,21 @@ from yahooquery import Ticker
 st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 
 #text inputs for tickers
-ticker1 = st.text_input("First stock (e.g. AAPL)")
-ticker2 = st.text_input("Second stock (e.g. MSFT)")
-ticker3 = st.text_input("Third stock (e.g. GOOG)")
-ticker4 = st.text_input("Fourth stock (e.g. AMZN)")
+
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    ticker1 = st.text_input("First stock (e.g. AAPL)")
+
+with col2:
+    ticker2 = st.text_input("Second stock (e.g. MSFT)")
+
+with col3:
+    ticker3 = st.text_input("Third stock (e.g. GOOG)")
+
+with col4:
+    ticker4 = st.text_input("Fourth stock (e.g. AMZN)")
 
 
 #from chatGPT cache function --> saves results for 10 min (600 sec), if not 
