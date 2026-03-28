@@ -6,8 +6,6 @@ from yahooquery import Ticker
 # title of the website
 st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 
-
-
 #text inputs for tickers
 ticker1 = st.text_input("First stock (e.g. AAPL)")
 ticker2 = st.text_input("Second stock (e.g. MSFT)")

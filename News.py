@@ -1,2 +1,1 @@
-def printing ():
-    print("nice")
+#Here we can do the plugin for the news
