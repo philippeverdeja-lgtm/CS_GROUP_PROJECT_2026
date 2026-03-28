@@ -1,1 +1,1 @@
-#other feature
+#small presentation of the comapny
