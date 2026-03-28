@@ -56,7 +56,7 @@ def get_stock_info(ticker):
 
 
 #only run program if both inputs exist
-if ticker1 or ticker2 or ticker3 or ticker4:
+if ticker1 and ticker2 and ticker3 and ticker4:
 
     #put the the ticker in the definition get_stock_info and gets all the data from yahooquery
     #this is where the program calls the informations
