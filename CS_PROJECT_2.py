@@ -42,7 +42,7 @@ def get_stock_info(ticker):
 
 
 #only run program if both inputs exist
-if ticker1 and ticker2:
+if ticker1 or ticker2 or ticker3 or ticker4:
 
     #put the the ticker in the definition get_stock_info and gets all the data from yahooquery
     #this is where the program calls the informations
@@ -50,7 +50,11 @@ if ticker1 and ticker2:
 
     stock2 = get_stock_info(ticker2)
 
-         #UX two columns
+        
+    
+    stock3 = get_stock_info(ticker3)
+
+    stock4 = get_stock_info(ticker4)
     
     
     col1, col2, col3, col4 = st.columns(4)
@@ -85,3 +89,25 @@ if ticker1 and ticker2:
         st.write("Price/Book:", stock2.get("priceToBook"))
         st.write("EV/EBITDA:", stock2.get("enterpriseToEbitda"))
         st.write("EBITDA:", stock2.get("ebitda"))
+
+    with col3:
+        st.header(ticker3.upper())
+        st.write("Profit Margin:", stock3.get("profitMargins"))
+        st.write("Revenue Growth:", stock3.get("revenueGrowth"))
+        st.write("Return on Equity:", stock3.get("returnOnEquity"))
+        st.write("P/E Ratio:", stock3.get("trailingPE"))
+        st.write("EPS:", stock3.get("trailingEps"))
+        st.write("Price/Book:", stock3.get("priceToBook"))
+        st.write("EV/EBITDA:", stock3.get("enterpriseToEbitda"))
+        st.write("EBITDA:", stock3.get("ebitda"))
+
+    with col4:
+        st.header(ticker4.upper())
+        st.write("Profit Margin:", stock4.get("profitMargins"))
+        st.write("Revenue Growth:", stock4.get("revenueGrowth"))
+        st.write("Return on Equity:", stock4.get("returnOnEquity"))
+        st.write("P/E Ratio:", stock4.get("trailingPE"))
+        st.write("EPS:", stock4.get("trailingEps"))
+        st.write("Price/Book:", stock4.get("priceToBook"))
+        st.write("EV/EBITDA:", stock4.get("enterpriseToEbitda"))
+        st.write("EBITDA:", stock4.get("ebitda"))
