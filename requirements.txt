@@ -1,3 +1,4 @@
 streamlit
 yahooquery
 yfinance
+pandas
