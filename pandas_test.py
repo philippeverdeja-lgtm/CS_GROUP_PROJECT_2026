@@ -18,8 +18,8 @@ with col4:
 
 df = pd.DataFrame({
     stock1: ["price","pm", "rg", "ROE" ],
-    stock2: ["price2", "pm2", "rg2", "ROE2"]
-    stock3: ["price3", "pm3", "rg3", "ROE3"]
+    stock2: ["price2", "pm2", "rg2", "ROE2"],
+    stock3: ["price3", "pm3", "rg3", "ROE3"],
     stock4: ["price4", "pm4", "rg4", "ROE4"]
 })
 
