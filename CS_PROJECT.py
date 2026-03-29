@@ -130,7 +130,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.subheader(f"Stock Price: {price3}")
 
         pm3 = stock3.get("profitMargins")
-        st.markdown(f"##""Profit Margin: {pm3}")
+        st.markdown(f"## Profit Margin: {pm3}")
         st.write("Profit Margin:", str(stock3.get("profitMargins")))
 
         st.write("Revenue Growth:", stock3.get("revenueGrowth"))
