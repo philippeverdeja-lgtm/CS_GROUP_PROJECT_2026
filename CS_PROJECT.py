@@ -105,12 +105,20 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         roe1 = stock1.get("returnOnEquity")
         st.markdown(f"##### ROE: {roe1}")
 
-        
-        st.write("P/E Ratio:", stock1.get("trailingPE"))
-        st.write("EPS:", stock1.get("trailingEps"))
-        st.write("Price/Book:", stock1.get("priceToBook"))
-        st.write("EV/EBITDA:", stock1.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock1.get("ebitda"))
+        pe1 = stock1.get("trailingPE")
+        st.markdown(f"##### P/E: {pe1}")
+
+        eps1 = stock1.get("trailingEPS")
+        st.markdown(f"##### EPS: {eps1}")
+
+        pb1 = stock1.get("priceToBook")
+        st.markdown(f"##### Price/Book: {pb1}")
+
+        evebitda1 = stock1.get("entrepriseToEbitda")
+        st.markdown(f"##### EV/EBITDA: {evebitda1}")
+
+        ebitda1 = stock1.get("ebitda")
+        st.markdown(f"##### EBITDA: {ebitda1}")
 
 
     #same as with col1
