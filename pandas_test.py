@@ -24,4 +24,7 @@ df = pd.DataFrame({
     stock4: ["price4", "pm4", "rg4", "ROE4"]
 })
 
+df = df.set_index('Metrics')
+
+
 st.dataframe(df)
