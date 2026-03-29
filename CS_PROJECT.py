@@ -162,3 +162,6 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.write("Price/Book:", stock4.get("priceToBook"))
         st.write("EV/EBITDA:", stock4.get("enterpriseToEbitda"))
         st.write("EBITDA:", stock4.get("ebitda"))
+
+
+st.caption("Data from Yahoo Finance")
