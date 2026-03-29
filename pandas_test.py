@@ -6,3 +6,5 @@ df = pd.DataFrame({
     'Ticker': ['AAPL', 'MSFT'],
     'Price': [150, 300]
 })
+
+st.dataframe(df)
