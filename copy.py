@@ -7,7 +7,7 @@ from yahooquery import Ticker
 
 st.set_page_config(layout="wide")
 # title of the website
-st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5 - COPY")
+st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 
 #text inputs for tickers
 
@@ -31,7 +31,7 @@ with col4:
 
 #from chatGPT cache function --> saves results for 10 min (600 sec), if not 
 #every refresh is a new call, crashed often before
-@st.cache_data(ttl=600)
+@st.cache_data(ttl=100)
 
 #definition of function
 def get_stock_info(ticker):
@@ -165,9 +165,6 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
 
 
-
-
-
 col_left, col_center, col_right = st.columns(3)
 
 with col_left:
@@ -178,5 +175,3 @@ with col_center:
 
 with col_right:
     st.caption("Righ Column")
-
-
