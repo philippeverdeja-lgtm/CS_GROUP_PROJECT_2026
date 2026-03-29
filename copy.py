@@ -164,6 +164,18 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.write("EBITDA:", stock4.get("ebitda"))
 
 
+    df = pd.DataFrame({
+    'KPI': ['Price', 'Profit Margin', 'Revenur Growth', 'ROE'],
+    stock1: ["price","pm", "rg", "ROE" ],
+    stock2: ["price2", "pm2", "rg2", "ROE2"],
+    stock3: ["price3", "pm3", "rg3", "ROE3"],
+    stock4: ["price4", "pm4", "rg4", "ROE4"]
+    })
+
+    df = df.set_index('KPI')
+
+
+st.dataframe(df)
 
 col_left, col_center, col_right = st.columns(3)
 
@@ -177,15 +189,3 @@ with col_right:
     st.caption("Righ Column")
 
 
-df = pd.DataFrame({
-    'KPI': ['Price', 'Profit Margin', 'Revenur Growth', 'ROE'],
-    stock1: ["price","pm", "rg", "ROE" ],
-    stock2: ["price2", "pm2", "rg2", "ROE2"],
-    stock3: ["price3", "pm3", "rg3", "ROE3"],
-    stock4: ["price4", "pm4", "rg4", "ROE4"]
-})
-
-df = df.set_index('KPI')
-
-
-st.dataframe(df)
