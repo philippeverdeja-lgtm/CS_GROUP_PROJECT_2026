@@ -166,5 +166,12 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
 
 col_left, col_center, col_right = st.columns(3)
+
+with col_left:
+    st.caption("Left Column")
+
 with col_center:
     st.caption("Data from Yahoo Finance")
+
+with col_right:
+    st.caption("Righ Column")
