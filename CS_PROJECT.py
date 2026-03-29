@@ -238,7 +238,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
 
     df = pd.DataFrame({
-        'Indicators': ['Price', 'Profit Margin', 'Revenue Growth', 'ROE', 'P/E Ratio', 'EPS', 'Price/Book', 'EV/EBITDA', 'EBITDA'],
+        'Indicators': ['Stock Price', 'Profit Margin', 'Revenue Growth', 'ROE', 'P/E Ratio', 'EPS', 'Price/Book', 'EV/EBITDA', 'EBITDA'],
         name1 : [price1, pm1, rg1, roe1, pe1, eps1, pb1, evebitda1, ebitda1],
         name2 : [price2, pm2, rg2, roe2, pe2, eps2, pb2, evebitda2, ebitda2],
         name3 : [price3, pm3, rg3, roe3, pe3, eps3, pb3, evebitda3, ebitda3],
