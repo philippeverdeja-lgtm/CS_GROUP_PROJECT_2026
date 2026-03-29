@@ -82,14 +82,12 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         stock4 = get_stock_info(ticker4)
     else:
         stock4 = {}
-    
-    
+
     col1, col2, col3, col4 = st.columns(4)
 
 
         #column one 
         #ticker 1 from input 1 gets in the header
-
 
     with col1:
         st.subheader(ticker1.upper())
