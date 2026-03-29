@@ -175,7 +175,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
     df = df.set_index('KPI')
 
 
-st.dataframe(df)
+    st.dataframe(df)
 
 col_left, col_center, col_right = st.columns(3)
 
