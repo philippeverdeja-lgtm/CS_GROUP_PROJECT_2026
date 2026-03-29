@@ -84,86 +84,86 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         stock4 = {}
     
     
-    col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4 = st.columns(4)
 
 
-        #column one 
-        #ticker 1 from input 1 gets in the header
+    #column one 
+    #ticker 1 from input 1 gets in the header
 
 
-    with col1:
-        st.subheader(ticker1.upper())
-        #stock1 this is where the program recalls the infromations it already has from get_stock_info and
-        #now only calls some elements from it 
-        price1 = stock1.get("currentPrice")
-        st.subheader(f"Stock Price: {price1}") 
+with col1:
+    st.subheader(ticker1.upper())
+    #stock1 this is where the program recalls the infromations it already has from get_stock_info and
+    #now only calls some elements from it 
+    price1 = stock1.get("currentPrice")
+    st.subheader(f"Stock Price: {price1}") 
 
-        pm1 = stock1.get("profitMargins")
-        st.markdown(f"##### Profit Margins: {pm1}")
+    pm1 = stock1.get("profitMargins")
+    st.markdown(f"##### Profit Margins: {pm1}")
 
-        rg1 = stock1.get("revenueGrowth")
-        st.markdown(f"##### Revenue Growth: {rg1}")
+    rg1 = stock1.get("revenueGrowth")
+    st.markdown(f"##### Revenue Growth: {rg1}")
+
+    roe1 = stock1.get("returnOnEquity")
+    st.markdown(f"##### ROE: {roe1}")
+
     
-        roe1 = stock1.get("returnOnEquity")
-        st.markdown(f"##### ROE: {roe1}")
-
-        
-        st.write("P/E Ratio:", stock1.get("trailingPE"))
-        st.write("EPS:", stock1.get("trailingEps"))
-        st.write("Price/Book:", stock1.get("priceToBook"))
-        st.write("EV/EBITDA:", stock1.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock1.get("ebitda"))
+    st.write("P/E Ratio:", stock1.get("trailingPE"))
+    st.write("EPS:", stock1.get("trailingEps"))
+    st.write("Price/Book:", stock1.get("priceToBook"))
+    st.write("EV/EBITDA:", stock1.get("enterpriseToEbitda"))
+    st.write("EBITDA:", stock1.get("ebitda"))
 
 
-    #same as with col1
-    with col2:
-        st.subheader(ticker2.upper())
+#same as with col1
+with col2:
+    st.subheader(ticker2.upper())
 
-        price2 = stock2.get("currentPrice")
-        st.subheader(f"Stock Price: {price2}")
+    price2 = stock2.get("currentPrice")
+    st.subheader(f"Stock Price: {price2}")
 
-        st.write("Profit Margin:", stock2.get("profitMargins"))
-        st.write("Revenue Growth:", stock2.get("revenueGrowth"))
-        st.write("Return on Equity:", stock2.get("returnOnEquity"))
-        st.write("P/E Ratio:", stock2.get("trailingPE"))
-        st.write("EPS:", stock2.get("trailingEps"))
-        st.write("Price/Book:", stock2.get("priceToBook"))
-        st.write("EV/EBITDA:", stock2.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock2.get("ebitda"))
+    st.write("Profit Margin:", stock2.get("profitMargins"))
+    st.write("Revenue Growth:", stock2.get("revenueGrowth"))
+    st.write("Return on Equity:", stock2.get("returnOnEquity"))
+    st.write("P/E Ratio:", stock2.get("trailingPE"))
+    st.write("EPS:", stock2.get("trailingEps"))
+    st.write("Price/Book:", stock2.get("priceToBook"))
+    st.write("EV/EBITDA:", stock2.get("enterpriseToEbitda"))
+    st.write("EBITDA:", stock2.get("ebitda"))
 
-    with col3:
-        
-        st.subheader(ticker3.upper())
+with col3:
+    
+    st.subheader(ticker3.upper())
 
-        price3 = stock3.get("currentPrice")
-        st.subheader(f"Stock Price: {price3}")
+    price3 = stock3.get("currentPrice")
+    st.subheader(f"Stock Price: {price3}")
 
-        pm3 = stock3.get("profitMargins")
-        st.markdown(f"##### Profit Margin: {pm3}")
-        
+    pm3 = stock3.get("profitMargins")
+    st.markdown(f"##### Profit Margin: {pm3}")
+    
 
-        st.write("Revenue Growth:", stock3.get("revenueGrowth"))
-        st.write("Return on Equity:", stock3.get("returnOnEquity"))
-        st.write("P/E Ratio:", stock3.get("trailingPE"))
-        st.write("EPS:", stock3.get("trailingEps"))
-        st.write("Price/Book:", stock3.get("priceToBook"))
-        st.write("EV/EBITDA:", stock3.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock3.get("ebitda"))
+    st.write("Revenue Growth:", stock3.get("revenueGrowth"))
+    st.write("Return on Equity:", stock3.get("returnOnEquity"))
+    st.write("P/E Ratio:", stock3.get("trailingPE"))
+    st.write("EPS:", stock3.get("trailingEps"))
+    st.write("Price/Book:", stock3.get("priceToBook"))
+    st.write("EV/EBITDA:", stock3.get("enterpriseToEbitda"))
+    st.write("EBITDA:", stock3.get("ebitda"))
 
-    with col4:
-        st.subheader(ticker4.upper())
+with col4:
+    st.subheader(ticker4.upper())
 
-        price4 = stock4.get("currentPrice")
-        st.subheader(f"Stock Price: {price4}")
+    price4 = stock4.get("currentPrice")
+    st.subheader(f"Stock Price: {price4}")
 
-        st.write("Profit Margin:", stock4.get("profitMargins"))
-        st.write("Revenue Growth:", stock4.get("revenueGrowth"))
-        st.write("Return on Equity:", stock4.get("returnOnEquity"))
-        st.write("P/E Ratio:", stock4.get("trailingPE"))
-        st.write("EPS:", stock4.get("trailingEps"))
-        st.write("Price/Book:", stock4.get("priceToBook"))
-        st.write("EV/EBITDA:", stock4.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock4.get("ebitda"))
+    st.write("Profit Margin:", stock4.get("profitMargins"))
+    st.write("Revenue Growth:", stock4.get("revenueGrowth"))
+    st.write("Return on Equity:", stock4.get("returnOnEquity"))
+    st.write("P/E Ratio:", stock4.get("trailingPE"))
+    st.write("EPS:", stock4.get("trailingEps"))
+    st.write("Price/Book:", stock4.get("priceToBook"))
+    st.write("EV/EBITDA:", stock4.get("enterpriseToEbitda"))
+    st.write("EBITDA:", stock4.get("ebitda"))
 
 
 
