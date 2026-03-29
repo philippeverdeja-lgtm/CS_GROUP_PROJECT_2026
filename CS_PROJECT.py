@@ -129,7 +129,10 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         price3 = stock3.get("currentPrice")
         st.subheader(f"Stock Price: {price3}")
 
+        pm3 = stock3.get("profitMargins")
+        st.subheader(f"Profit Margin: {pm3}")
         st.write("Profit Margin:", str(stock3.get("profitMargins")))
+
         st.write("Revenue Growth:", stock3.get("revenueGrowth"))
         st.write("Return on Equity:", stock3.get("returnOnEquity"))
         st.write("P/E Ratio:", stock3.get("trailingPE"))
@@ -140,8 +143,10 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
     with col4:
         st.subheader(ticker4.upper())
+
         price4 = stock4.get("currentPrice")
         st.subheader(f"Stock Price: {price4}")
+
         st.write("Profit Margin:", stock4.get("profitMargins"))
         st.write("Revenue Growth:", stock4.get("revenueGrowth"))
         st.write("Return on Equity:", stock4.get("returnOnEquity"))
