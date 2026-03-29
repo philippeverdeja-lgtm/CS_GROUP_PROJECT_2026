@@ -52,9 +52,16 @@ def get_stock_info(ticker):
 
     summary_detail = t.summary_detail.get(ticker, {}) #market data
 
+    price_data = t.price.get(ticker,{})
 
-        #combines dictionaries into one (Chat gpt)
-    return {**financial_data, **key_stats, **summary_detail}
+
+    long_name = price_data.get("longName") or ticker
+
+    #combines dictionaries into one
+    stock_info = {**financial_data, **key_stats, **summary_detail}
+    stock_info["longName"] = long_name
+
+    return stock_info
 
 
 #only run program if both inputs exist
@@ -89,10 +96,15 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         #column one 
         #ticker 1 from input 1 gets in the header
 
+
     with col1:
         st.subheader(ticker1.upper())
         #stock1 this is where the program recalls the infromations it already has from get_stock_info and
-        #now only calls some elements from it 
+        #now only calls some elements from it
+
+        name1 = stock1.get("longName") or ticker1.upper()
+        st.subheader(name1)
+
         price1 = stock1.get("currentPrice")
         st.subheader(f"Stock Price: {price1}") 
 
@@ -119,67 +131,131 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
         ebitda1 = stock1.get("ebitda")
         st.markdown(f"##### EBITDA: {ebitda1}")
-
+      
 
     #same as with col1
     with col2:
         st.subheader(ticker2.upper())
 
+        name2 = stock2.get("longName") or ticker2.upper()
+        st.subheader(name2)
+
         price2 = stock2.get("currentPrice")
         st.subheader(f"Stock Price: {price2}")
 
-        st.write("Profit Margin:", stock2.get("profitMargins"))
-        st.write("Revenue Growth:", stock2.get("revenueGrowth"))
-        st.write("Return on Equity:", stock2.get("returnOnEquity"))
-        st.write("P/E Ratio:", stock2.get("trailingPE"))
-        st.write("EPS:", stock2.get("trailingEps"))
-        st.write("Price/Book:", stock2.get("priceToBook"))
-        st.write("EV/EBITDA:", stock2.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock2.get("ebitda"))
+        pm2 = stock2.get("profitMargins")
+        st.markdown(f"##### Profit Margin: {pm2}")
+
+        rg2 = stock2.get("revenueGrowth")
+        st.markdown(f"##### Revenue Growth: {rg2}")
+
+        roe2 = stock2.get("returnOnEquity")
+        st.markdown(f"##### ROE: {roe2}")
+
+        pe2 = stock2.get("trailingPE")
+        st.markdown(f"##### P/E: {pe2}")
+
+        eps2 = stock2.get("trailingEPS")
+        st.markdown(f"##### EPS: {eps2}")
+
+        pb2 = stock2.get("priceToBook")
+        st.markdown(f"##### Price/Book: {pb2}")
+
+        evebitda2 = stock2.get("entrepriseToEbitda")
+        st.markdown(f"##### EV/EBITDA: {evebitda2}")
+
+        ebitda2 = stock2.get("ebitda")
+        st.markdown(f"##### EBITDA: {ebitda2}")
+
 
     with col3:
         
         st.subheader(ticker3.upper())
+
+        name3 = stock3.get("longName") or ticker3.upper()
+        st.subheader(name3)
 
         price3 = stock3.get("currentPrice")
         st.subheader(f"Stock Price: {price3}")
 
         pm3 = stock3.get("profitMargins")
         st.markdown(f"##### Profit Margin: {pm3}")
-        
 
-        st.write("Revenue Growth:", stock3.get("revenueGrowth"))
-        st.write("Return on Equity:", stock3.get("returnOnEquity"))
-        st.write("P/E Ratio:", stock3.get("trailingPE"))
-        st.write("EPS:", stock3.get("trailingEps"))
-        st.write("Price/Book:", stock3.get("priceToBook"))
-        st.write("EV/EBITDA:", stock3.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock3.get("ebitda"))
+        rg3 = stock3.get("revenueGrowth")
+        st.markdown(f"##### Revenue Growth: {rg3}")
+
+        roe3 = stock3.get("returnOnEquity")
+        st.markdown(f"##### ROE: {roe3}")
+
+        pe3 = stock3.get("trailingPE")
+        st.markdown(f"##### P/E: {pe3}")
+
+        eps3 = stock3.get("trailingEPS")
+        st.markdown(f"##### EPS: {eps3}")
+
+        pb3 = stock3.get("priceToBook")
+        st.markdown(f"##### Price/Book: {pb3}")
+
+        evebitda3 = stock3.get("entrepriseToEbitda")
+        st.markdown(f"##### EV/EBITDA: {evebitda3}")
+
+        ebitda3 = stock3.get("ebitda")
+        st.markdown(f"##### EBITDA: {ebitda3}")
+
 
     with col4:
         st.subheader(ticker4.upper())
 
+        name4 = stock4.get("longName") or ticker4.upper()
+        st.subheader(name4)
+
         price4 = stock4.get("currentPrice")
         st.subheader(f"Stock Price: {price4}")
 
-        st.write("Profit Margin:", stock4.get("profitMargins"))
-        st.write("Revenue Growth:", stock4.get("revenueGrowth"))
-        st.write("Return on Equity:", stock4.get("returnOnEquity"))
-        st.write("P/E Ratio:", stock4.get("trailingPE"))
-        st.write("EPS:", stock4.get("trailingEps"))
-        st.write("Price/Book:", stock4.get("priceToBook"))
-        st.write("EV/EBITDA:", stock4.get("enterpriseToEbitda"))
-        st.write("EBITDA:", stock4.get("ebitda"))
+        pm4 = stock4.get("profitMargins")
+        st.markdown(f"##### Profit Margin: {pm4}")
+
+        rg4 = stock4.get("revenueGrowth")
+        st.markdown(f"##### Revenue Growth: {rg4}")
+
+        roe4 = stock4.get("returnOnEquity")
+        st.markdown(f"##### ROE: {roe4}")
+
+        pe4 = stock4.get("trailingPE")
+        st.markdown(f"##### P/E: {pe4}")
+
+        eps4 = stock4.get("trailingEPS")
+        st.markdown(f"##### EPS: {eps4}")
+
+        pb4 = stock4.get("priceToBook")
+        st.markdown(f"##### Price/Book: {pb4}")
+
+        evebitda4 = stock4.get("entrepriseToEbitda")
+        st.markdown(f"##### EV/EBITDA: {evebitda4}")
+
+        ebitda4 = stock4.get("ebitda")
+        st.markdown(f"##### EBITDA: {ebitda4}")
+
+
+    df = pd.DataFrame({
+        'Indicators': ['Price', 'Profit Margin', 'Revenue Growth', 'ROE', 'P/E Ratio', 'EPS', 'Price/Book', 'EV/EBITDA', 'EBITDA'],
+        name1 : [price1, pm1, rg1, roe1, pe1, eps1, pb1, evebitda1, ebitda1],
+        name2 : [price2, pm2, rg2, roe2, pe2, eps2, pb2, evebitda2, ebitda2],
+        name3 : [price3, pm3, rg3, roe3, pe3, eps3, pb3, evebitda3, ebitda3],
+        name4 : [price4, pm4, rg4, roe4, pe4, eps4, pb4, evebitda4, ebitda4] 
+    })
+
+    df = df.set_index('Indicators')
+
+    st.dataframe(df)
+
+
+
+
 
 
 
 col_left, col_center, col_right = st.columns(3)
 
 with col_left:
-    st.caption("Left Column")
-
-with col_center:
     st.caption("Data from Yahoo Finance")
-
-with col_right:
-    st.caption("Righ Column")
