@@ -17,6 +17,7 @@ with col4:
     stock4 = st.text_input("Fourth ticker")
 
 df = pd.DataFrame({
+    'Metric': ['Price', 'Profit Margin', 'Revenur Growth', 'ROE'],
     stock1: ["price","pm", "rg", "ROE" ],
     stock2: ["price2", "pm2", "rg2", "ROE2"],
     stock3: ["price3", "pm3", "rg3", "ROE3"],
