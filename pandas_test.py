@@ -3,7 +3,7 @@ import pandas as pd
 from yahooquery import Ticker
 
 df = pd.DataFrame({
-    'Ticker': ['AAPL', 'MSFT'],
+    'Ticker': [st.text_input("Insert Ticker"), 'MSFT'],
     'Price': [150, 300]
 })
 
