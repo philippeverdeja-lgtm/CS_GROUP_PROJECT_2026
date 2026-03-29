@@ -1,6 +1,6 @@
-
 # import modules, also put them in requirements
 import streamlit as st
+import pandas as pd
 from yahooquery import Ticker
 
 
@@ -10,6 +10,8 @@ st.set_page_config(layout="wide")
 st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 
 #text inputs for tickers
+
+
 
 
 col1, col2, col3, col4 = st.columns(4)
