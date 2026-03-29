@@ -164,4 +164,7 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.write("EBITDA:", stock4.get("ebitda"))
 
 
-st.caption("Data from Yahoo Finance")
+
+col_center = st.columns(1)
+with col_center:
+    st.caption("Data from Yahoo Finance")
