@@ -97,11 +97,15 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.subheader(f"Stock Price: {price1}") 
 
         pm1 = stock1.get("profitMargins")
-        st.markdown(f"#### Profit Margins: {pm1}")
+        st.markdown(f"##### Profit Margins: {pm1}")
+
+        rg1 = stock1.get("revenueGrowth")
+        st.markdown(f"##### Revenue Growth: {rg1}")
+    
+        roe1 = stock1.get("returnOnEquity")
+        st.markdown(f"##### ROE: {roe1}")
+
         
-        st.write("Profit Margin:", stock1.get("profitMargins"))
-        st.write("Revenue Growth:", stock1.get("revenueGrowth"))
-        st.write("Return on Equity:", stock1.get("returnOnEquity"))
         st.write("P/E Ratio:", stock1.get("trailingPE"))
         st.write("EPS:", stock1.get("trailingEps"))
         st.write("Price/Book:", stock1.get("priceToBook"))
