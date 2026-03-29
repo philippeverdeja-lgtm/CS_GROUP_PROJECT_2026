@@ -12,8 +12,6 @@ st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
 #text inputs for tickers
 
 
-
-
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -237,6 +235,8 @@ if ticker1 or ticker2 or ticker3 or ticker4:
         st.markdown(f"##### EBITDA: {ebitda4}")
 
 
+
+####this is a table for better comaprison
     df = pd.DataFrame({
         'Indicators': ['Stock Price', 'Profit Margin', 'Revenue Growth', 'ROE', 'P/E Ratio', 'EPS', 'Price/Book', 'EV/EBITDA', 'EBITDA'],
         name1 : [price1, pm1, rg1, roe1, pe1, eps1, pb1, evebitda1, ebitda1],
@@ -248,9 +248,6 @@ if ticker1 or ticker2 or ticker3 or ticker4:
     df = df.set_index('Indicators')
 
     st.dataframe(df)
-
-
-
 
 
 
