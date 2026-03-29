@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 from yahooquery import Ticker
 
+
+st.set_page_config(layout="wide")
+
 col1, col2, col3, col4 = st.columns (4)
 
 with col1:
