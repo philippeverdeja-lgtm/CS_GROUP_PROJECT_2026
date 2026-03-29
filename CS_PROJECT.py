@@ -165,6 +165,6 @@ if ticker1 or ticker2 or ticker3 or ticker4:
 
 
 
-col_center = st.columns(1)
+col_center, = st.columns(1)
 with col_center:
     st.caption("Data from Yahoo Finance")
