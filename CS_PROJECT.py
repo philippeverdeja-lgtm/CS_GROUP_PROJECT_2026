@@ -50,10 +50,14 @@ def get_stock_info(ticker):
 
     summary_detail = t.summary_detail.get(ticker, {}) #market data
 
-    price_data = t.price.get(ticker,{})
 
+    price_data = t.price.get(ticker)
 
-    long_name = price_data.get("longName") or ticker
+    if not isinstance(price_data, dict):
+        price_data = {}
+
+    long_name = price_data.get("longName", ticker)
+
 
     #combines dictionaries into one
     stock_info = {**financial_data, **key_stats, **summary_detail}
