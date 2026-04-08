@@ -2,3 +2,4 @@ streamlit
 yahooquery
 yfinance
 pandas
+Let's goo
