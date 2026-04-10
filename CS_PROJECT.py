@@ -29,7 +29,7 @@ with col4:
 
 #from chatGPT cache function --> saves results for 10 min (600 sec), if not 
 #every refresh is a new call, crashed often before
-@st.cache_data(ttl=100)
+@st.cache_data(ttl=300)
 
 #definition of function
 def get_stock_info(ticker):
