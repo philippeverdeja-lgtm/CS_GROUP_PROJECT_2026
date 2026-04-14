@@ -23,10 +23,10 @@ st.markdown("---")
 st.subheader("What This App Does")
 st.markdown("""
 This tool lets you:
-- **Simulate** how your money grows under different conditions
-- **Compare** different investment strategies side by side
-- **Experiment** with different amounts, time horizons, and risk levels
-- **Build intuition** about how compound interest actually works (spoiler: it's powerful)
+- **Analyzes** your existing portfolio
+- **Compares** different companies side by side
+- **Creates** your personalized investment profile
+- Keeps you up to date with the most important news
 """)
 
 st.markdown("---")
