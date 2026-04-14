@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("CS Group Project 2026")
+st.title("CS Group Project 2026 - Easy Investing")
 
 st.write("Welcome! Choose a feature from the sidebar")
 
