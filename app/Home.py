@@ -14,7 +14,7 @@ st.write("Welcome! Choose a feature from the sidebar")
 st.divider()
 
 # Layout with columns
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4 = st.columns(4) 
 
 with col1:
     st.subheader("Financial Basics")
