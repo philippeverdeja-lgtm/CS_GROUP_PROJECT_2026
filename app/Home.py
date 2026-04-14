@@ -21,11 +21,11 @@ with col1:
     st.write("Different tutorials and explanations around investing")
 
 with col2:
-    st.subheader("Analyser")
+    st.subheader("Analyzer")
     st.write("Analyze your data and get insights")
 
 with col3:
-    st.subheader("Comparator")
+    st.subheader("Stock comparator")
     st.write("Compare different datasets or results")
 
 with col4:
