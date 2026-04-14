@@ -1,1 +1,0 @@
-# i could write the name of the company and select then the Ticker
