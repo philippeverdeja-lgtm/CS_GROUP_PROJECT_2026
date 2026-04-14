@@ -7,25 +7,29 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🚀 CS Group Project 2026")
+st.title("CS Group Project 2026")
 
-st.write("Welcome! Choose a feature from the sidebar 👈")
+st.write("Welcome! Choose a feature from the sidebar")
 
 st.divider()
 
 # Layout with columns
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.subheader("📊 Analyser")
-    st.write("Analyze your data and get insights")
+    st.subheader("Financial Basics")
+    st.wite("Different tutorials and explanations around investing")
 
 with col2:
-    st.subheader("⚖️ Comparator")
-    st.write("Compare different datasets or results")
+    st.subheader("Analyser")
+    st.write("Analyze your data and get insights")
 
 with col3:
-    st.subheader("📰 News")
+    st.subheader("Comparator")
+    st.write("Compare different datasets or results")
+
+with col4:
+    st.subheader("News")
     st.write("Stay updated with latest information")
 
 st.divider()
