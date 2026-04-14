@@ -1,0 +1,33 @@
+#this is the home page
+import streamlit as st
+
+st.set_page_config(
+    page_title="CS Project App",
+    page_icon="🚀",
+    layout="wide"
+)
+
+st.title("🚀 CS Group Project 2026")
+
+st.write("Welcome! Choose a feature from the sidebar 👈")
+
+st.divider()
+
+# Layout with columns
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.subheader("📊 Analyser")
+    st.write("Analyze your data and get insights")
+
+with col2:
+    st.subheader("⚖️ Comparator")
+    st.write("Compare different datasets or results")
+
+with col3:
+    st.subheader("📰 News")
+    st.write("Stay updated with latest information")
+
+st.divider()
+
+st.info("Use the sidebar to navigate between features")
