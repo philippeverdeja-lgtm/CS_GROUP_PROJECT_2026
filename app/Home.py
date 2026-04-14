@@ -14,7 +14,7 @@ st.write("Welcome! Choose a feature from the sidebar")
 st.divider()
 
 # Layout with columns
-col1, col2, col3, col4 = st.columns(4) 
+col1, col2, col3, col4, col5 = st.columns(5) 
 
 with col1:
     st.subheader("Financial Basics")
@@ -31,6 +31,10 @@ with col3:
 with col4:
     st.subheader("News")
     st.write("Stay updated with latest information")
+
+with col5:
+    st.subheader("Profile")
+    st.write("Find your investor profile!")
 
 st.divider()
 
