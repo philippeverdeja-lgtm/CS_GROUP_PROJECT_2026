@@ -4,9 +4,9 @@ import streamlit as st
 # Finance App Tutorial Page
 # -----------------------------
 
-st.set_page_config(page_title="Finance Tutorial", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Finance Tutorial", page_icon="", layout="wide")
 
-st.title("📊 Welcome to Your Finance Basics Guide")
+st.title("Welcome to Your Finance Basics Guide")
 st.write("This page is designed to help beginners understand how the app works and the basic concepts of finance in a simple way.")
 
 # -----------------------------
