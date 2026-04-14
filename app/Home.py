@@ -25,7 +25,7 @@ with col2:
     st.write("Analyze your data and get insights")
 
 with col3:
-    st.subheader("Stock comparator")
+    st.subheader("Stocks")
     st.write("Compare different datasets or results")
 
 with col4:
