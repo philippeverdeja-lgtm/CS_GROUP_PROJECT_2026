@@ -1,1 +1,0 @@
-#small presentation of the comapny
