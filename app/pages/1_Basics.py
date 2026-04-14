@@ -1,89 +1,256 @@
 import streamlit as st
 
-# -----------------------------
-# Finance App Tutorial Page
-# -----------------------------
+st.set_page_config(page_title="Finance Tutorials", page_icon="📚", layout="wide")
 
-st.set_page_config(page_title="Finance Tutorial", page_icon="", layout="wide")
+st.title("Finance Basics")
+st.markdown("Learn the fundamentals. Master your money.")
 
-st.title("Welcome to Your Finance Basics Guide")
-st.write("This page is designed to help beginners understand how the app works and the basic concepts of finance in a simple way.")
+st.markdown("---")
 
-# -----------------------------
-# What the app does
-# -----------------------------
+# Introduction
+col1, col2 = st.columns([2, 1])
+with col1:
+    st.markdown("""
+    This guide covers the core concepts you need to understand investing and personal finance. 
+    Everything here builds on simple, everyday ideas—no jargon required.
+    """)
+with col2:
+    st.info("💡 **Pro tip:** Understanding *why* money grows matters more than memorizing formulas.")
 
-st.header("💡 What does this app do?")
-st.write("""
-This application helps you:
-- Understand basic financial concepts
-- Learn how investments grow over time
-- Explore risk and return trade-offs
-- Simulate simple financial scenarios
+st.markdown("---")
+
+# What does the app do?
+st.subheader("What This App Does")
+st.markdown("""
+This tool lets you:
+- **Simulate** how your money grows under different conditions
+- **Compare** different investment strategies side by side
+- **Experiment** with different amounts, time horizons, and risk levels
+- **Build intuition** about how compound interest actually works (spoiler: it's powerful)
 """)
 
-# -----------------------------
-# Basic finance concepts
-# -----------------------------
+st.markdown("---")
 
-st.header("📚 Basic Finance Concepts")
+# Core concepts
+st.subheader("Core Concepts")
 
-st.subheader("1. Money growth over time")
-st.write("Money can grow when you invest it. The longer you leave it invested, the more it can grow.")
+col1, col2 = st.columns(2)
 
-st.subheader("2. Interest")
-st.write("Interest is the money you earn for lending your money or investing it.")
+with col1:
+    st.markdown("### Time & Money")
+    st.markdown("""
+    Money today is worth more than money tomorrow—because today's money can start earning returns right now.
+    
+    A dollar you invest today could be worth $2 in 10 years. A dollar you invest in 5 years? 
+    It only has 5 years to grow.
+    """)
+    
+    st.markdown("### Interest")
+    st.markdown("""
+    Interest is what you earn when you lend money or invest it. Think of it as "rent" paid for using your money.
+    
+    **Simple interest:** You earn the same amount every year.
+    
+    **Compound interest:** You earn interest on your original money AND on the interest already earned. This gets exponential fast.
+    """)
 
-st.subheader("3. Compound Interest")
-st.write("Compound interest means you earn interest on your initial money AND on the interest already earned. This is how wealth can grow faster over time.")
+with col2:
+    st.markdown("### Risk & Return")
+    st.markdown("""
+    Safe investments (bonds, savings accounts) grow slowly but reliably.
+    
+    Riskier investments (stocks, crypto) can grow fast but can also lose money.
+    
+    The trade-off is real: you can't have both high returns *and* no risk.
+    """)
+    
+    st.markdown("### Diversification")
+    st.markdown("""
+    Don't put all your eggs in one basket.
+    
+    By spreading money across different types of investments (stocks, bonds, cash), 
+    you reduce the damage if one investment tanks.
+    """)
 
-st.subheader("4. Risk and Return")
-st.write("Higher potential returns usually come with higher risk. Safer investments usually grow more slowly.")
+st.markdown("---")
 
-st.subheader("5. Diversification")
-st.write("Diversification means spreading your money across different investments to reduce risk.")
+# Asset types
+st.subheader("Types of Investments")
 
-# -----------------------------
-# Financial instruments
-# -----------------------------
+tabs = st.tabs(["Stocks", "Bonds", "ETFs", "Cash"])
 
-st.header("🏦 Common Financial Instruments")
+with tabs[0]:
+    st.markdown("""
+    **What they are:** A piece of ownership in a company.
+    
+    **How you make money:**
+    - **Capital gains:** Stock price goes up, you sell for profit
+    - **Dividends:** Company pays you a portion of profits
+    
+    **Risk level:** Medium to high (can lose money short-term, but historically grow long-term)
+    
+    **Time horizon:** 5+ years recommended
+    
+    **Example:** You own 10 shares of Apple at $150/share = $1,500 invested. 
+    If it rises to $200, you have $2,000 (gain of $500).
+    """)
 
-st.subheader("Stocks")
-st.write("Stocks represent ownership in a company. If the company grows, your stock value may increase.")
+with tabs[1]:
+    st.markdown("""
+    **What they are:** A loan you give to a company or government. They promise to pay you back with interest.
+    
+    **How you make money:**
+    - **Interest payments:** Regular payments while you hold the bond
+    - **Principal:** Get your money back when the bond matures
+    
+    **Risk level:** Low to medium (safer than stocks, but less growth potential)
+    
+    **Time horizon:** Varies (can be 1 year to 30+ years)
+    
+    **Example:** Buy a government bond for $1,000 at 3% annual interest. 
+    You get $30/year for 10 years, then get your $1,000 back.
+    """)
 
-st.subheader("Bonds")
-st.write("Bonds are like loans you give to companies or governments. In return, they pay you interest.")
+with tabs[2]:
+    st.markdown("""
+    **What they are:** A basket of stocks or bonds bundled together. One fund might contain 500 different companies.
+    
+    **How you make money:** Same as stocks/bonds, but diversified.
+    
+    **Why they're great:**
+    - **Instant diversification:** Own dozens or hundreds of companies with one purchase
+    - **Low fees:** Usually cheaper than picking individual stocks
+    - **Less stress:** Less likely to lose everything if one company fails
+    
+    **Risk level:** Low to medium (depends on what's in the ETF)
+    
+    **Example:** VWRL is a global ETF that owns thousands of stocks across 45+ countries. 
+    One share gives you exposure to the whole world.
+    """)
 
-st.subheader("Cash / Savings")
-st.write("Cash is the safest but usually grows the least over time.")
+with tabs[3]:
+    st.markdown("""
+    **What they are:** Money in a savings account or money market fund. The safest option.
+    
+    **How you make money:** Interest earned from the bank (usually very low, 1-4% depending on the bank).
+    
+    **Why it matters:** Cash is your emergency fund. Don't invest money you need within 2 years.
+    
+    **Risk level:** Virtually zero (banks are insured up to certain limits)
+    
+    **Downside:** Doesn't keep up with inflation, so you slowly lose buying power over decades.
+    """)
 
-# -----------------------------
-# Simple example
-# -----------------------------
+st.markdown("---")
 
-st.header("📈 Simple Example")
-st.write("""
-Imagine you invest 1,000 CHF:
-- At 5% annual return
-- For 10 years
+# Compound interest example
+st.subheader("Why Compound Interest is Magic")
 
-Because of compound interest, your money grows faster over time, not just linearly.
+st.markdown("""
+This is the single most important concept in personal finance. Let me show you why.
 """)
 
-st.info("Tip: Time in the market is often more important than trying to time the market.")
+col1, col2 = st.columns(2)
 
-# -----------------------------
-# How to use the app
-# -----------------------------
+with col1:
+    st.markdown("**Scenario:** Invest 10,000 CHF at 7% annual return")
+    
+    years_data = {
+        "Year": [1, 5, 10, 20, 30],
+        "Value": [10_700, 14_026, 19_672, 38_697, 76_123],
+        "Growth": [700, 4_026, 9_672, 28_697, 66_123]
+    }
+    
+    import pandas as pd
+    df = pd.DataFrame(years_data)
+    
+    st.dataframe(
+        df.style.format({
+            "Value": "CHF {:,.0f}",
+            "Growth": "CHF {:,.0f}"
+        }),
+        use_container_width=True,
+        hide_index=True
+    )
 
-st.header("🧭 How to use this app")
-st.write("""
-1. Explore simulations (if available)
-2. Adjust parameters like interest rate or time
-3. Compare different investment scenarios
-4. Learn by experimenting
+with col2:
+    st.markdown("""
+    Notice:
+    - After 10 years: roughly doubled (10k → 19.6k)
+    - After 20 years: roughly quadrupled (10k → 38.6k)
+    - After 30 years: roughly 7.6x (10k → 76k)
+    
+    You only added 10,000 CHF once. The rest came from compound growth.
+    
+    **Key insight:** Time is your most valuable asset when you're young. 
+    Starting 10 years earlier nearly doubles your final wealth.
+    """)
+
+st.info("📌 This is why starting early (even with small amounts) beats starting late with big amounts.")
+
+st.markdown("---")
+
+# Risk tiers
+st.subheader("Risk Levels Explained")
+
+risk_col1, risk_col2, risk_col3 = st.columns(3)
+
+with risk_col1:
+    st.markdown("### 🟢 Low Risk")
+    st.markdown("""
+    **Investments:** Cash, bonds, stable funds
+    
+    **Annual return:** 1-4%
+    
+    **Best for:** Money you need within 2 years, or if you can't sleep at night losing 10%
+    
+    **Downside:** Barely beats inflation
+    """)
+
+with risk_col2:
+    st.markdown("### 🟡 Medium Risk")
+    st.markdown("""
+    **Investments:** Balanced ETFs (60% stocks, 40% bonds)
+    
+    **Annual return:** 5-7%
+    
+    **Best for:** Most people with a 5-10 year horizon
+    
+    **Downside:** You'll see 15-20% drops sometimes
+    """)
+
+with risk_col3:
+    st.markdown("### 🔴 High Risk")
+    st.markdown("""
+    **Investments:** 100% stocks, growth ETFs, individual stocks
+    
+    **Annual return:** 8-12%+ (or losses)
+    
+    **Best for:** People who won't panic if markets drop 40%
+    
+    **Downside:** Could lose half your money in bad years
+    """)
+
+st.markdown("---")
+
+# Getting started
+st.subheader("Getting Started")
+
+st.markdown("""
+1. **Decide your time horizon.** When do you need this money?
+   - Less than 2 years? → Stay in cash
+   - 5-10 years? → Medium risk (balanced fund)
+   - 10+ years? → Can handle more risk (stock-heavy)
+
+2. **Choose your strategy.** Most people benefit from:
+   - **Dollar-cost averaging (DCA):** Invest the same amount every month, regardless of price
+   - **Buy and hold:** Invest lump sum, ignore short-term noise
+   - **Rebalance annually:** Keep your allocation stable over time
+
+3. **Start small.** Even 100 CHF/month compounds into serious wealth.
+
+4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash.
+   The market always recovers. History shows it.
 """)
 
-st.success("Start exploring and experimenting with different financial settings!")
-
+st.success("💪 You now understand the basics. Ready to experiment with the Portfolio Analyzer?")
