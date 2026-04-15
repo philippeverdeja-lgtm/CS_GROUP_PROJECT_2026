@@ -4,11 +4,11 @@ import pandas as pd
 import requests
 from yahooquery import Ticker
 
-st.set_page_config(page_title="Stock Comparator", page_icon="", layout="wide")
-st.title("Stock Comparator - CS_GROUP_PROJECT_2026")
+st.set_page_config(page_title="Stock Comparator", page_icon="📊", layout="wide")
+st.title("📊 Stock Comparator - CS_GROUP_PROJECT_2026")
 st.markdown("Search for stocks by ticker, company name, or ISIN — compare up to 4 at once.")
 
-# ── Search Yahoo Finance 
+# ── Search Yahoo Finance ──────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
 def search_stocks(query):
     """Search Yahoo Finance for stocks matching query"""
@@ -17,8 +17,11 @@ def search_stocks(query):
     try:
         url = f"https://query2.finance.yahoo.com/v1/finance/search?q={query}&quotesCount=8&newsCount=0&enableFuzzyQuery=true"
         headers = {"User-Agent": "Mozilla/5.0"}
+        
         r = requests.get(url, headers=headers, timeout=5)
+        r.raise_for_status()  # FIX
         data = r.json()
+
         results = []
         for item in data.get("quotes", []):
             ticker   = item.get("symbol", "")
@@ -33,7 +36,7 @@ def search_stocks(query):
         return []
 
 # ── Fetch stock data from yahooquery ──────────────────────────────────────────
-@st.cache_data(show_spinner=False, ttl=100)
+@st.cache_data(show_spinner=False, ttl=300)
 def get_stock_info(ticker):
     """Fetch comprehensive stock data from Yahoo Finance"""
     if not ticker:
@@ -43,13 +46,16 @@ def get_stock_info(ticker):
         ticker = ticker.upper()
         t = Ticker(ticker)
 
-        # Get all data sources
-        financial_data = t.financial_data.get(ticker, {})
-        key_stats = t.key_stats.get(ticker, {})
-        summary_detail = t.summary_detail.get(ticker, {})
-        price_data = t.price.get(ticker)
+        # SAFE dictionary handling
+        financial_data = t.financial_data.get(ticker, {}) if isinstance(t.financial_data, dict) else {}
+        key_stats = t.key_stats.get(ticker, {}) if isinstance(t.key_stats, dict) else {}
+        summary_detail = t.summary_detail.get(ticker, {}) if isinstance(t.summary_detail, dict) else {}
 
-        if not isinstance(price_data, dict):
+        # FIX price handling
+        price_all = t.price
+        if isinstance(price_all, dict):
+            price_data = price_all.get(ticker, {})
+        else:
             price_data = {}
 
         long_name = price_data.get("longName", ticker)
@@ -62,6 +68,7 @@ def get_stock_info(ticker):
         return stock_info
     
     except Exception as e:
+        st.error(f"Error fetching {ticker}: {e}")  # SHOW ERROR
         return {}
 
 # ── Format values ─────────────────────────────────────────────────────────────
@@ -213,7 +220,7 @@ if not stock_data:
     st.stop()
 
 # ── Display stock cards ───────────────────────────────────────────────────────
-st.subheader(" Stock Details")
+st.subheader("📊 Stock Details")
 
 cols = st.columns(len(stock_data))
 
@@ -225,8 +232,10 @@ for col, (ticker, info) in zip(cols, stock_data.items()):
         st.subheader(ticker)
         st.write(f"**{name}**")
         
-        if price:
+        if price is not None:
             st.metric("Stock Price", f"${price:,.2f}")
+        else:
+            st.metric("Stock Price", "N/A")
         
         st.markdown(f"**Profit Margin:** {format_value(info.get('profitMargins'))}")
         st.markdown(f"**Revenue Growth:** {format_value(info.get('revenueGrowth'))}")
@@ -240,7 +249,7 @@ for col, (ticker, info) in zip(cols, stock_data.items()):
 st.divider()
 
 # ── Comparison table ──────────────────────────────────────────────────────────
-st.subheader("Comparison Table")
+st.subheader("📋 Comparison Table")
 
 table_data = {
     'Indicators': [
