@@ -1,262 +1,280 @@
-# import modules, also put them in requirements
+# Stock Comparator with Yahoo Finance search
 import streamlit as st
 import pandas as pd
+import requests
 from yahooquery import Ticker
 
+st.set_page_config(page_title="Stock Comparator", page_icon="📊", layout="wide")
+st.title("📊 Stock Comparator - CS_GROUP_PROJECT_2026")
+st.markdown("Search for stocks by ticker, company name, or ISIN — compare up to 4 at once.")
 
+# ── Search Yahoo Finance ──────────────────────────────────────────────────────
+@st.cache_data(show_spinner=False)
+def search_stocks(query):
+    """Search Yahoo Finance for stocks matching query"""
+    if not query or len(query) < 2:
+        return []
+    try:
+        url = f"https://query2.finance.yahoo.com/v1/finance/search?q={query}&quotesCount=8&newsCount=0&enableFuzzyQuery=true"
+        headers = {"User-Agent": "Mozilla/5.0"}
+        r = requests.get(url, headers=headers, timeout=5)
+        data = r.json()
+        results = []
+        for item in data.get("quotes", []):
+            ticker   = item.get("symbol", "")
+            name     = item.get("longname") or item.get("shortname") or ""
+            exchange = item.get("exchDisp", "")
+            typ      = item.get("quoteType", "")
+            if ticker and typ in ("EQUITY", "ETF", "MUTUALFUND"):
+                label = f"{ticker} — {name} ({exchange})"
+                results.append({"label": label, "ticker": ticker, "name": name})
+        return results
+    except Exception:
+        return []
 
-st.set_page_config(layout="wide")
-# title of the website
-st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5 yeah")
+# ── Fetch stock data from yahooquery ──────────────────────────────────────────
+@st.cache_data(show_spinner=False, ttl=300)
+def get_stock_info(ticker):
+    """Fetch comprehensive stock data from Yahoo Finance"""
+    if not ticker:
+        return {}
+    
+    try:
+        ticker = ticker.upper()
+        t = Ticker(ticker)
 
-#text inputs for tickers
+        # Get all data sources
+        financial_data = t.financial_data.get(ticker, {})
+        key_stats = t.key_stats.get(ticker, {})
+        summary_detail = t.summary_detail.get(ticker, {})
+        price_data = t.price.get(ticker)
 
+        if not isinstance(price_data, dict):
+            price_data = {}
+
+        long_name = price_data.get("longName", ticker)
+
+        # Combine all data
+        stock_info = {**financial_data, **key_stats, **summary_detail}
+        stock_info["longName"] = long_name
+        stock_info["currentPrice"] = price_data.get("regularMarketPrice")
+
+        return stock_info
+    
+    except Exception as e:
+        return {}
+
+# ── Format values ─────────────────────────────────────────────────────────────
+def format_value(value):
+    """Format numeric values nicely"""
+    if value is None:
+        return "N/A"
+    if isinstance(value, float):
+        if abs(value) < 1:
+            return f"{value:.4f}"
+        elif abs(value) > 1000000000:
+            return f"${value/1e9:.2f}B"
+        elif abs(value) > 1000000:
+            return f"${value/1e6:.2f}M"
+        else:
+            return f"{value:.2f}"
+    return str(value)
+
+# ── Session state ─────────────────────────────────────────────────────────────
+if "selected_tickers" not in st.session_state:
+    st.session_state.selected_tickers = [None, None, None, None]
+
+# ── Search and selection interface ────────────────────────────────────────────
+st.markdown("### 🔍 Search and Select Stocks")
+st.caption("Search by ticker (AAPL), company name (Apple), or ISIN. Select up to 4 stocks to compare.")
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    ticker1 = st.text_input("First stock (e.g. AAPL)")
+    st.markdown("**Stock 1**")
+    search1 = st.text_input("Search Stock 1", 
+                            placeholder="e.g. AAPL, Apple, NESN.SW...",
+                            key="search1")
+    selected1 = None
+    if search1:
+        with st.spinner("Searching..."):
+            results1 = search_stocks(search1)
+        if results1:
+            options1 = ["— select —"] + [r["label"] for r in results1]
+            chosen1 = st.selectbox("", options1, key="select1", label_visibility="collapsed")
+            if chosen1 != "— select —":
+                match1 = next((r for r in results1 if r["label"] == chosen1), None)
+                if match1:
+                    selected1 = match1["ticker"]
+                    st.session_state.selected_tickers[0] = selected1
+        else:
+            st.warning("No results found")
+    else:
+        selected1 = st.session_state.selected_tickers[0]
+    
+    if selected1:
+        st.success(f"✅ {selected1}")
 
 with col2:
-    ticker2 = st.text_input("Second stock (e.g. MSFT)")
+    st.markdown("**Stock 2**")
+    search2 = st.text_input("Search Stock 2",
+                            placeholder="e.g. MSFT, Microsoft...",
+                            key="search2")
+    selected2 = None
+    if search2:
+        with st.spinner("Searching..."):
+            results2 = search_stocks(search2)
+        if results2:
+            options2 = ["— select —"] + [r["label"] for r in results2]
+            chosen2 = st.selectbox("", options2, key="select2", label_visibility="collapsed")
+            if chosen2 != "— select —":
+                match2 = next((r for r in results2 if r["label"] == chosen2), None)
+                if match2:
+                    selected2 = match2["ticker"]
+                    st.session_state.selected_tickers[1] = selected2
+        else:
+            st.warning("No results found")
+    else:
+        selected2 = st.session_state.selected_tickers[1]
+    
+    if selected2:
+        st.success(f"✅ {selected2}")
 
 with col3:
-    ticker3 = st.text_input("Third stock (e.g. GOOG)")
+    st.markdown("**Stock 3**")
+    search3 = st.text_input("Search Stock 3",
+                            placeholder="e.g. GOOG, Google...",
+                            key="search3")
+    selected3 = None
+    if search3:
+        with st.spinner("Searching..."):
+            results3 = search_stocks(search3)
+        if results3:
+            options3 = ["— select —"] + [r["label"] for r in results3]
+            chosen3 = st.selectbox("", options3, key="select3", label_visibility="collapsed")
+            if chosen3 != "— select —":
+                match3 = next((r for r in results3 if r["label"] == chosen3), None)
+                if match3:
+                    selected3 = match3["ticker"]
+                    st.session_state.selected_tickers[2] = selected3
+        else:
+            st.warning("No results found")
+    else:
+        selected3 = st.session_state.selected_tickers[2]
+    
+    if selected3:
+        st.success(f"✅ {selected3}")
 
 with col4:
-    ticker4 = st.text_input("Fourth stock (e.g. AMZN)")
-
-
-#from chatGPT cache function --> saves results for 10 min (600 sec), if not 
-#every refresh is a new call, crashed often before
-@st.cache_data(ttl=100)
-
-#definition of function
-def get_stock_info(ticker):
-
+    st.markdown("**Stock 4**")
+    search4 = st.text_input("Search Stock 4",
+                            placeholder="e.g. AMZN, Amazon...",
+                            key="search4")
+    selected4 = None
+    if search4:
+        with st.spinner("Searching..."):
+            results4 = search_stocks(search4)
+        if results4:
+            options4 = ["— select —"] + [r["label"] for r in results4]
+            chosen4 = st.selectbox("", options4, key="select4", label_visibility="collapsed")
+            if chosen4 != "— select —":
+                match4 = next((r for r in results4 if r["label"] == chosen4), None)
+                if match4:
+                    selected4 = match4["ticker"]
+                    st.session_state.selected_tickers[3] = selected4
+        else:
+            st.warning("No results found")
+    else:
+        selected4 = st.session_state.selected_tickers[3]
     
-    ticker = ticker.upper() #all upercase tickers now
+    if selected4:
+        st.success(f"✅ {selected4}")
 
-    #creates yahoo finance object for this stock, does not call the data yet
-    #but creates the "interface"
-    t = Ticker(ticker)
+# ── Get selected tickers ──────────────────────────────────────────────────────
+selected_tickers = [t for t in st.session_state.selected_tickers if t]
 
-    #get.ticekr gets my data
-    financial_data = t.financial_data.get(ticker, {}) #t.financial_data 
+if not selected_tickers:
+    st.info("👆 Search for and select at least one stock to compare.")
+    st.stop()
 
+# ── Fetch data for all selected stocks ────────────────────────────────────────
+st.divider()
 
-    key_stats = t.key_stats.get(ticker, {}) # ratios evaluations
+with st.spinner("Fetching stock data from Yahoo Finance..."):
+    stock_data = {}
+    for ticker in selected_tickers:
+        info = get_stock_info(ticker)
+        if info:
+            stock_data[ticker] = info
+        else:
+            st.error(f"Could not fetch data for {ticker}")
 
+if not stock_data:
+    st.stop()
 
-    summary_detail = t.summary_detail.get(ticker, {}) #market data
+# ── Display stock cards ───────────────────────────────────────────────────────
+st.subheader("📊 Stock Details")
 
+cols = st.columns(len(stock_data))
 
-    price_data = t.price.get(ticker)
-
-    if not isinstance(price_data, dict):
-        price_data = {}
-
-    long_name = price_data.get("longName", ticker)
-
-
-    #combines dictionaries into one
-    stock_info = {**financial_data, **key_stats, **summary_detail}
-    stock_info["longName"] = long_name
-
-    return stock_info
-
-
-#only run program if both inputs exist
-if ticker1 or ticker2 or ticker3 or ticker4:
-
-    #put the the ticker in the definition get_stock_info and gets all the data from yahooquery
-    #this is where the program calls the informations
-
-    if ticker1:
-        stock1 = get_stock_info(ticker1)
-    else:
-        stock1 = {}
-
-    if ticker2:
-        stock2 = get_stock_info(ticker2)
-    else:
-        stock2 = {}
-    
-    if ticker3:
-        stock3 = get_stock_info(ticker3)
-    else:
-        stock3 = {}
-
-    if ticker4:
-        stock4 = get_stock_info(ticker4)
-    else:
-        stock4 = {}
-
-    col1, col2, col3, col4 = st.columns(4)
-
-
-        #column one 
-        #ticker 1 from input 1 gets in the header
-
-
-    with col1:
-        st.subheader(ticker1.upper())
-        #stock1 this is where the program recalls the infromations it already has from get_stock_info and
-        #now only calls some elements from it
-
-        name1 = stock1.get("longName") or ticker1.upper()
-        st.subheader(name1)
-
-        price1 = stock1.get("currentPrice")
-        st.subheader(f"Stock Price: {price1}") 
-
-        pm1 = stock1.get("profitMargins")
-        st.markdown(f"##### Profit Margins: {pm1}")
-
-        rg1 = stock1.get("revenueGrowth")
-        st.markdown(f"##### Revenue Growth: {rg1}")
-
-        roe1 = stock1.get("returnOnEquity")
-        st.markdown(f"##### ROE: {roe1}")
-
-        pe1 = stock1.get("trailingPE")
-        st.markdown(f"##### P/E: {pe1}")
-
-        eps1 = stock1.get("trailingEPS")
-        st.markdown(f"##### EPS: {eps1}")
-
-        pb1 = stock1.get("priceToBook")
-        st.markdown(f"##### Price/Book: {pb1}")
-
-        evebitda1 = stock1.get("entrepriseToEbitda")
-        st.markdown(f"##### EV/EBITDA: {evebitda1}")
-
-        ebitda1 = stock1.get("ebitda")
-        st.markdown(f"##### EBITDA: {ebitda1}")
-      
-
-    #same as with col1
-    with col2:
-        st.subheader(ticker2.upper())
-
-        name2 = stock2.get("longName") or ticker2.upper()
-        st.subheader(name2)
-
-        price2 = stock2.get("currentPrice")
-        st.subheader(f"Stock Price: {price2}")
-
-        pm2 = stock2.get("profitMargins")
-        st.markdown(f"##### Profit Margin: {pm2}")
-
-        rg2 = stock2.get("revenueGrowth")
-        st.markdown(f"##### Revenue Growth: {rg2}")
-
-        roe2 = stock2.get("returnOnEquity")
-        st.markdown(f"##### ROE: {roe2}")
-
-        pe2 = stock2.get("trailingPE")
-        st.markdown(f"##### P/E: {pe2}")
-
-        eps2 = stock2.get("trailingEPS")
-        st.markdown(f"##### EPS: {eps2}")
-
-        pb2 = stock2.get("priceToBook")
-        st.markdown(f"##### Price/Book: {pb2}")
-
-        evebitda2 = stock2.get("entrepriseToEbitda")
-        st.markdown(f"##### EV/EBITDA: {evebitda2}")
-
-        ebitda2 = stock2.get("ebitda")
-        st.markdown(f"##### EBITDA: {ebitda2}")
-
-
-    with col3:
+for col, (ticker, info) in zip(cols, stock_data.items()):
+    with col:
+        name = info.get("longName", ticker)
+        price = info.get("currentPrice")
         
-        st.subheader(ticker3.upper())
+        st.subheader(ticker)
+        st.write(f"**{name}**")
+        
+        if price:
+            st.metric("Stock Price", f"${price:,.2f}")
+        
+        st.markdown(f"**Profit Margin:** {format_value(info.get('profitMargins'))}")
+        st.markdown(f"**Revenue Growth:** {format_value(info.get('revenueGrowth'))}")
+        st.markdown(f"**ROE:** {format_value(info.get('returnOnEquity'))}")
+        st.markdown(f"**P/E Ratio:** {format_value(info.get('trailingPE'))}")
+        st.markdown(f"**EPS:** {format_value(info.get('trailingEPS'))}")
+        st.markdown(f"**Price/Book:** {format_value(info.get('priceToBook'))}")
+        st.markdown(f"**EV/EBITDA:** {format_value(info.get('enterpriseToEbitda'))}")
+        st.markdown(f"**EBITDA:** {format_value(info.get('ebitda'))}")
 
-        name3 = stock3.get("longName") or ticker3.upper()
-        st.subheader(name3)
+st.divider()
 
-        price3 = stock3.get("currentPrice")
-        st.subheader(f"Stock Price: {price3}")
+# ── Comparison table ──────────────────────────────────────────────────────────
+st.subheader("📋 Comparison Table")
 
-        pm3 = stock3.get("profitMargins")
-        st.markdown(f"##### Profit Margin: {pm3}")
+table_data = {
+    'Indicators': [
+        'Stock Price',
+        'Profit Margin',
+        'Revenue Growth',
+        'ROE',
+        'P/E Ratio',
+        'EPS',
+        'Price/Book',
+        'EV/EBITDA',
+        'EBITDA'
+    ]
+}
 
-        rg3 = stock3.get("revenueGrowth")
-        st.markdown(f"##### Revenue Growth: {rg3}")
+for ticker, info in stock_data.items():
+    table_data[ticker] = [
+        format_value(info.get('currentPrice')),
+        format_value(info.get('profitMargins')),
+        format_value(info.get('revenueGrowth')),
+        format_value(info.get('returnOnEquity')),
+        format_value(info.get('trailingPE')),
+        format_value(info.get('trailingEPS')),
+        format_value(info.get('priceToBook')),
+        format_value(info.get('enterpriseToEbitda')),
+        format_value(info.get('ebitda'))
+    ]
 
-        roe3 = stock3.get("returnOnEquity")
-        st.markdown(f"##### ROE: {roe3}")
+df = pd.DataFrame(table_data)
+df = df.set_index('Indicators')
+st.dataframe(df, use_container_width=True)
 
-        pe3 = stock3.get("trailingPE")
-        st.markdown(f"##### P/E: {pe3}")
-
-        eps3 = stock3.get("trailingEPS")
-        st.markdown(f"##### EPS: {eps3}")
-
-        pb3 = stock3.get("priceToBook")
-        st.markdown(f"##### Price/Book: {pb3}")
-
-        evebitda3 = stock3.get("entrepriseToEbitda")
-        st.markdown(f"##### EV/EBITDA: {evebitda3}")
-
-        ebitda3 = stock3.get("ebitda")
-        st.markdown(f"##### EBITDA: {ebitda3}")
-
-
-    with col4:
-        st.subheader(ticker4.upper())
-
-        name4 = stock4.get("longName") or ticker4.upper()
-        st.subheader(name4)
-
-        price4 = stock4.get("currentPrice")
-        st.subheader(f"Stock Price: {price4}")
-
-        pm4 = stock4.get("profitMargins")
-        st.markdown(f"##### Profit Margin: {pm4}")
-
-        rg4 = stock4.get("revenueGrowth")
-        st.markdown(f"##### Revenue Growth: {rg4}")
-
-        roe4 = stock4.get("returnOnEquity")
-        st.markdown(f"##### ROE: {roe4}")
-
-        pe4 = stock4.get("trailingPE")
-        st.markdown(f"##### P/E: {pe4}")
-
-        eps4 = stock4.get("trailingEPS")
-        st.markdown(f"##### EPS: {eps4}")
-
-        pb4 = stock4.get("priceToBook")
-        st.markdown(f"##### Price/Book: {pb4}")
-
-        evebitda4 = stock4.get("entrepriseToEbitda")
-        st.markdown(f"##### EV/EBITDA: {evebitda4}")
-
-        ebitda4 = stock4.get("ebitda")
-        st.markdown(f"##### EBITDA: {ebitda4}")
-
-
-
-####this is a table for better comaprison
-    df = pd.DataFrame({
-        'Indicators': ['Stock Price', 'Profit Margin', 'Revenue Growth', 'ROE', 'P/E Ratio', 'EPS', 'Price/Book', 'EV/EBITDA', 'EBITDA'],
-        name1 : [price1, pm1, rg1, roe1, pe1, eps1, pb1, evebitda1, ebitda1],
-        name2 : [price2, pm2, rg2, roe2, pe2, eps2, pb2, evebitda2, ebitda2],
-        name3 : [price3, pm3, rg3, roe3, pe3, eps3, pb3, evebitda3, ebitda3],
-        name4 : [price4, pm4, rg4, roe4, pe4, eps4, pb4, evebitda4, ebitda4] 
-    })
-
-    df = df.set_index('Indicators')
-
-    st.dataframe(df)
-
-
-
+st.divider()
 
 col_left, col_center, col_right = st.columns(3)
-
 with col_left:
     st.caption("Data from Yahoo Finance")
