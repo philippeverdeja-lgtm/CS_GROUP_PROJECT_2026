@@ -36,7 +36,7 @@ def search_stocks(query):
         return []
 
 # ── Fetch stock data from yahooquery ──────────────────────────────────────────
-@st.cache_data(show_spinner=False, ttl=0)
+@st.cache_data(show_spinner=False, ttl=1000)
 def get_stock_info(ticker):
     """Fetch comprehensive stock data from Yahoo Finance"""
     if not ticker:
