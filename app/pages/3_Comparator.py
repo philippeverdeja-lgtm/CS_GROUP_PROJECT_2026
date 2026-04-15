@@ -6,7 +6,7 @@ from yahooquery import Ticker
 
 st.set_page_config(page_title="Stock Comparator", page_icon="📊", layout="wide")
 st.title("📊 Stock Comparator - CS_GROUP_PROJECT_2026")
-st.markdown("Search for stocks by ticker, company name, or ISIN — compare up to 4 at once.")
+st.markdown("Search for stocks by ticker or company name")
 
 # ── Search Yahoo Finance ──────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
@@ -36,7 +36,7 @@ def search_stocks(query):
         return []
 
 # ── Fetch stock data from yahooquery ──────────────────────────────────────────
-@st.cache_data(show_spinner=False, ttl=300)
+@st.cache_data(show_spinner=False, ttl=0)
 def get_stock_info(ticker):
     """Fetch comprehensive stock data from Yahoo Finance"""
     if not ticker:
