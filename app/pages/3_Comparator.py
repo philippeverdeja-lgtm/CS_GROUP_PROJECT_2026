@@ -7,7 +7,7 @@ from yahooquery import Ticker
 
 st.set_page_config(layout="wide")
 # title of the website
-st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5")
+st.title("Stock Comparator - CS_GRPOUP_PROJECT_2026_11.5 yeah")
 
 #text inputs for tickers
 
