@@ -4,11 +4,11 @@ import plotly.express as px
 import yfinance as yf
 import requests
 
-st.set_page_config(page_title="Portfolio Analyzer", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Portfolio Allocation", layout="wide")
 
-st.title("📊 Portfolio Analyzer")
+st.title("Portfolio Allocation")
 
-st.markdown("Search for a stock by ticker, company name, ISIN or valor — we fetch everything else automatically.")
+st.markdown("Search for ticker, company name, ISIN or valor")
 
 # ── Region mapping by exchange ────────────────────────────────────────────────
 def get_region(ticker_info):
@@ -101,7 +101,7 @@ if "portfolio" not in st.session_state:
 
 # ── Search section ────────────────────────────────────────────────────────────
 st.markdown("---")
-st.subheader("🔍 Search & add stocks")
+st.subheader("Search & add stocks")
 st.caption("Start typing a ticker (AAPL), company name (Apple), ISIN or valor number")
 
 search_query = st.text_input("Search for a stock",
@@ -134,7 +134,7 @@ if selected_ticker:
                               min_value=1, value=1, key="qty_input")
     with col_btn:
         st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("➕ Add to portfolio", type="primary"):
+        if st.button("Add to portfolio", type="primary"):
             already = any(r["ticker"] == selected_ticker for r in st.session_state.portfolio)
             if already:
                 st.warning(f"{selected_ticker} is already in your portfolio!")
@@ -152,7 +152,7 @@ st.markdown("---")
 
 col_sample, col_clear = st.columns([2, 5])
 with col_sample:
-    if st.button("🔄 Load sample portfolio"):
+    if st.button("Load sample portfolio"):
         st.session_state.portfolio = [
             {"ticker": "AAPL",    "name": "Apple Inc.",   "quantity": 10},
             {"ticker": "NESN.SW", "name": "Nestlé S.A.",  "quantity": 5},
@@ -162,7 +162,7 @@ with col_sample:
         ]
         st.rerun()
 with col_clear:
-    if st.button("🗑️ Clear all") and st.session_state.portfolio:
+    if st.button("Clear all") and st.session_state.portfolio:
         st.session_state.portfolio = []
         st.rerun()
 
@@ -181,11 +181,11 @@ if st.session_state.portfolio:
             updated_rows.append({**row, "quantity": quantity})
     st.session_state.portfolio = updated_rows
 else:
-    st.info("👆 Search for a stock above to build your portfolio.")
+    st.info("Search for a stock and build your portfolio.")
 
 # ── Analyze button ────────────────────────────────────────────────────────────
 st.markdown("")
-analyze = st.button("🔍 Analyze Portfolio", type="primary", use_container_width=True)
+analyze = st.button("Analyze Portfolio", type="primary", use_container_width=True)
 
 if analyze:
     rows = st.session_state.portfolio
@@ -210,7 +210,7 @@ if analyze:
             total = df["Value (USD)"].sum()
 
             st.markdown("---")
-            st.subheader("📈 Portfolio Breakdown")
+            st.subheader("Portfolio Breakdown")
             st.metric("Total Portfolio Value", f"${total:,.2f}")
 
             COLORS = px.colors.qualitative.Set3
@@ -257,7 +257,7 @@ if analyze:
                 st.plotly_chart(make_risk_pie("By Risk"), use_container_width=True)
 
             st.markdown("---")
-            st.subheader("📋 Portfolio Summary")
+            st.subheader("Portfolio Summary")
             df["Weight (%)"] = (df["Value (USD)"] / total * 100).round(2)
             st.dataframe(
                 df[["Ticker", "Name", "Quantity", "Price", "Currency",
