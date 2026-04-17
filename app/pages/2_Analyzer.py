@@ -102,7 +102,6 @@ if "portfolio" not in st.session_state:
 # ── Search section ────────────────────────────────────────────────────────────
 st.markdown("---")
 st.subheader("Search & add stocks")
-st.caption("Start typing a ticker (AAPL), company name (Apple), ISIN or valor number")
 
 search_query = st.text_input("Search for a stock",
                               placeholder="e.g. Apple, AAPL, NESN, CH0012221716...",
@@ -116,10 +115,10 @@ if search_query:
         results = search_stocks(search_query)
 
     if results:
-        options = ["— select a stock —"] + [r["label"] for r in results]
-        chosen  = st.selectbox("Matching stocks:", options, key="search_select")
+        options = ["select a stock"] + [r["label"] for r in results]
+        chosen  = st.selectbox("Results", options, key="search_select")
 
-        if chosen != "— select a stock —":
+        if chosen != "select a stock":
             match = next((r for r in results if r["label"] == chosen), None)
             if match:
                 selected_ticker = match["ticker"]
@@ -162,7 +161,7 @@ with col_sample:
         ]
         st.rerun()
 with col_clear:
-    if st.button("Clear all") and st.session_state.portfolio:
+    if st.button("Clear") and st.session_state.portfolio:
         st.session_state.portfolio = []
         st.rerun()
 
@@ -181,7 +180,7 @@ if st.session_state.portfolio:
             updated_rows.append({**row, "quantity": quantity})
     st.session_state.portfolio = updated_rows
 else:
-    st.info("Search for a stock and build your portfolio.")
+    st.info("Search for a stck first and see your analysis")
 
 # ── Analyze button ────────────────────────────────────────────────────────────
 st.markdown("")
