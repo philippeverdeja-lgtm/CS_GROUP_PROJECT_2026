@@ -43,10 +43,10 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("### Time & Money")
-    st.text("""
+    st.markdown("""
     Money today is worth more than money tomorrow! You can invest it to earn interst (More money) today!
 
-    If you invest $100 today, they might become $108 in one year. If you keep $100 in your pocket, they still are $100 one year from now. 
+    If you invest /$100 today, they might become /$108 in one year. If you keep $100 in your pocket, they still are $100 one year from now. 
 
     """)
     
