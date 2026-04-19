@@ -53,7 +53,8 @@ with col1:
     If you have \$100 today you can buy 100 apples but one year later, your \$100 might only buy 98 apples! Investments are one way of escaping inflation!
 
     """)
-    
+
+with col2:
     st.markdown("### Interest")
     st.markdown("""
     Interest is what you earn when you lend money or invest it. Think of it as "rent" paid for using your money.
@@ -63,7 +64,11 @@ with col1:
     **Compound interest:** You earn interest on your original money AND on the interest already earned. This gets exponential fast.
     """)
 
-with col2:
+st.divider()
+
+col1, col2 = st.columns(2)
+
+with col1:
     st.markdown("### Risk & Return")
     st.markdown("""
     Safe investments (bonds, savings accounts) grow slowly but reliably.
@@ -73,6 +78,7 @@ with col2:
     The trade-off is real: you can't have both high returns *and* no risk.
     """)
     
+with col2:
     st.markdown("### Diversification")
     st.markdown("""
     Don't put all your eggs in one basket.
@@ -81,7 +87,7 @@ with col2:
     you reduce the damage if one investment tanks.
     """)
 
-st.markdown("---")
+st.divider()
 
 # Asset types
 st.subheader("Types of Investments")
