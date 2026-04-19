@@ -18,7 +18,7 @@ with col1:
     Everything here builds on simple, everyday ideas—no jargon required.""")
 
 with col2:
-    st.info("💡 **Pro tip:** Understanding *why* money grows matters more than memorizing formulas.")
+    st.info("**Pro tip:** Understanding *why* money grows matters more than memorizing formulas.")
 
 st.divider()
 
@@ -29,7 +29,7 @@ With this app you can:
 - **Understand** the fundamentals of investing
 - **Create** a new portfolio
 - **Analyze** your existing portfolio
-- **Compares** different companies side by side
+- **Compare** different companies side by side
 - **Find** your investor profile
 - **Stay informed** with the most important news
 """)
@@ -44,10 +44,10 @@ col1, col2 = st.columns(2)
 with col1:
     st.markdown("### Time & Money")
     st.markdown("""
-    Money today is worth more than money tomorrow—because today's money can start earning returns right now.
-    
-    A dollar you invest today could be worth $2 in 10 years. A dollar you invest in 5 years? 
-    It only has 5 years to grow.
+    Money today is worth more than money tomorrow! You can invest it to earn interst (More money) today!
+
+    If you invest 100$ today, they might become 108$ in one year. If you keep 100$ in your pocket, they still are 100$ one year from now. 
+
     """)
     
     st.markdown("### Interest")
