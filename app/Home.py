@@ -1,11 +1,8 @@
-#this is the home page
+#this imports streamlit into the program
 import streamlit as st
 
-st.set_page_config(
-    page_title="CS Project App",
-    page_icon="",
-    layout="wide"
-)
+#page configuration wide
+st.set_page_config(layout="wide")
 
 st.title("Homepage Easy Investing")
 

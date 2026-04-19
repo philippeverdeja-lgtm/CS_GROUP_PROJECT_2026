@@ -1,9 +1,9 @@
 import streamlit as st
 
-st.set_page_config(page_title="Finance Tutorials", page_icon="📚", layout="wide")
+st.set_page_config(page_title="Finance Basics", page_icon="", layout="wide")
 
-st.title("Finance Basics")
-st.markdown("Learn the fundamentals. Master your money.")
+st.title("Investment Basics")
+st.markdown("Learn the fundamentals. Grow your money.")
 
 st.markdown("---")
 
