@@ -1,35 +1,40 @@
+#import stremlit
 import streamlit as st
 
-st.set_page_config(page_title="Finance Basics", page_icon="", layout="wide")
+#page layout wide
+st.set_page_config(layout="wide")
 
+#title and subtitle of the page
 st.title("Investment Basics")
 st.markdown("Learn the fundamentals. Grow your money.")
 
 st.divider()
 
-# Introduction
+
+#two introducion columns
 col1, col2 = st.columns(2)
 with col1:
-    st.markdown("""
-    This guide covers the core concepts you need to understand investing and personal finance. 
-    Everything here builds on simple, everyday ideas—no jargon required.
-    """)
+    st.markdown("""This guide covers the core concepts you need to understand investing and personal finance. 
+    Everything here builds on simple, everyday ideas—no jargon required.""")
+
 with col2:
     st.info("💡 **Pro tip:** Understanding *why* money grows matters more than memorizing formulas.")
 
-st.markdown("---")
+st.divider()
 
 # What does the app do?
 st.subheader("What This App Does")
 st.markdown("""
-This tool lets you:
-- **Analyzes** your existing portfolio
+With this app you can:
+- **Understand** the fundamentals of investing
+- **Create** a new portfolio
+- **Analyze** your existing portfolio
 - **Compares** different companies side by side
-- **Creates** your personalized investment profile
-- Keeps you up to date with the most important news
+- **Find** your investor profile
+- **Stay informed** with the most important news
 """)
 
-st.markdown("---")
+st.divider()
 
 # Core concepts
 st.subheader("Core Concepts")
