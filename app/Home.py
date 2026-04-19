@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("CS Group Project 2026 - Easy Investing")
+st.title("Homepage Easy Investing")
 
 st.write("Welcome! Choose a feature from the sidebar")
 
@@ -18,15 +18,15 @@ col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     st.subheader("Basics")
-    st.write("Different tutorials and explanations around investing")
+    st.write("Fundamentals of investing")
 
 with col2:
     st.subheader("Analyzer")
-    st.write("Analyze your data and get insights")
+    st.write("Create and analyze your portfolio")
 
 with col3:
     st.subheader("Comparator")
-    st.write("Compare different datasets or results")
+    st.write("Compare stocks and ETFs")
 
 with col4:
     st.subheader("News")
