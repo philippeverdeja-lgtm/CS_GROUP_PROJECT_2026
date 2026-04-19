@@ -46,7 +46,8 @@ with col1:
     st.markdown("""
     Money today is worth more than money tomorrow! You can invest it to earn interst (More money) today!
 
-    If you invest 100$ today, they might become 108$ in one year. If you keep 100$ in your pocket, they still are 100$ one year from now. 
+    If you invest 100$
+     today, they might become 108$ in one year. If you keep 100$ in your pocket, they still are 100$ one year from now. 
 
     """)
     
