@@ -42,11 +42,15 @@ st.subheader("Core Concepts")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("### Time & Money")
+    st.markdown("### Time, Money & Inflation")
     st.markdown("""
-    Money today is worth more than money tomorrow! You can invest it to earn interst (More money) today!
+    Money today is worth more than money tomorrow! You can invest it to earn interst (more money) today!
 
-    If you invest \$100 today, they might become \$108 in one year. If you keep \$100 in your pocket, they still are \$100 one year from now. 
+    If you invest \$100 today, they might become \$108 in one year. If you keep \$100 in your pocket, they still are \$100 one year from now. The money you're not earning by not investing is called **opportunity cost**.
+
+    You also have to keep in mind that every year **Your money loses value** due to **inflation**!
+
+    If you have \$100 today you can buy 100 apples but one year later, your \$100 might only buy 98 apples! Investments are one way of escaping inflation!
 
     """)
     
