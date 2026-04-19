@@ -8,7 +8,7 @@ st.markdown("Learn the fundamentals. Grow your money.")
 st.markdown("---")
 
 # Introduction
-col1, col2 = st.columns([2, 1])
+col1, col2 = st.columns(2)
 with col1:
     st.markdown("""
     This guide covers the core concepts you need to understand investing and personal finance. 

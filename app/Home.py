@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 
 st.title("Homepage Easy Investing")
 
-st.info("Welcome! Choose a feature from the sidebar")
+st.info("Welcome!")
 
 #divider for layout
 st.divider()
