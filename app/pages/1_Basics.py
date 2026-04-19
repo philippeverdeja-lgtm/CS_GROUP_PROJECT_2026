@@ -5,7 +5,7 @@ st.set_page_config(page_title="Finance Basics", page_icon="", layout="wide")
 st.title("Investment Basics")
 st.markdown("Learn the fundamentals. Grow your money.")
 
-st.markdown("---")
+st.divider()
 
 # Introduction
 col1, col2 = st.columns(2)
