@@ -1,8 +1,8 @@
 import streamlit as st
 
-st.set_page_config(page_title="Investor Profile", page_icon="📊", layout="centered")
+st.set_page_config(page_title="Investor Profile", page_icon="📊", layout="wide")
 
-st.title("📊 Investor Profile Questionnaire")
+st.title("Investor Profile ")
 st.write("Answer these questions to find out what type of investor you are.")
 st.divider()
 
@@ -134,8 +134,8 @@ monthly_amount = st.number_input("Enter amount:", min_value=0, max_value=100000,
 st.divider()
 
 # Show progress
-st.write(f"**Your Score: {score} / 32**")
-st.progress(score / 32)
+st.write(f"**Your Score: {score} / 28**")
+st.progress(score / 28)
 
 # Button to see results
 if st.button("Show My Profile", type="primary", use_container_width=True):
@@ -144,7 +144,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
         st.warning("Please enter your monthly investment amount")
     else:
         # Determine profile based on score
-        if score <= 12:
+        if score <= 10:
             profile = "Conservative"
             emoji = "🛡️"
             description = "You value safety over growth. You want predictable returns with minimal losses."
@@ -155,7 +155,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             pros = "- Sleep well at night\n- Unlikely to panic\n- Stable and predictable"
             cons = "- Low returns (2-4% yearly)\n- Inflation erodes value\n- May miss growth opportunities"
             
-        elif score <= 20:
+        elif score <= 18:
             profile = "Balanced"
             emoji = "⚖️"
             description = "You want both growth and safety. You accept some risk for better long-term returns."
@@ -166,7 +166,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             pros = "- Good growth (5-7% yearly)\n- Manageable volatility\n- Flexible and balanced"
             cons = "- May feel conflicted during crashes\n- Temptation to 'do something'\n- Less growth than aggressive"
             
-        elif score <= 28:
+        elif score <= 26:
             profile = "Growth-Focused"
             emoji = "🚀"
             description = "You're return-oriented and handle volatility. You believe in long-term investing."
