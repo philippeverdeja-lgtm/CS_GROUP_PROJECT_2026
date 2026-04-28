@@ -155,7 +155,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
 
             avoid = "- Individual stocks\n- Crypto\n- Leverage/margin trading"
 
-            monthly_plan = "Bonds: $" {int(monthly_amount * 0.7)} and " ETFs: $" {int(monthly_amount * 0.2)} and "Cash: $" {int(monthly_amount * 0.1)}
+            monthly_plan = "Bonds: $" {int(monthly_amount * 0.7)}  " ETFs: $" {int(monthly_amount * 0.2)}  "Cash: $" {int(monthly_amount * 0.1)}
             
             
 
