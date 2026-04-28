@@ -4,8 +4,6 @@ import yfinance as yf
 import pandas as pd
 from datetime import datetime
 
-st.sidebar.title("Morning Market Digest")
-
 st.set_page_config(page_title="Morning Market Digest", layout="centered")
 
 st.title("Morning Market Digest")
