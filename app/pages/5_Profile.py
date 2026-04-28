@@ -6,11 +6,11 @@ st.title("Investor Profile ")
 st.write("Answer these questions to find out what type of investor you are.")
 st.divider()
 
-# Initialize score
+# Initialize score for each questionary
 score = 0
 
 # Question 1: Time Horizon
-st.write("**Question 1:** How long until you need this money? (years)")
+st.write("**Question 1:** How long until you need this money?")
 time_horizon = st.radio(
     "Choose one:",
     ["Less than 3 years", "3-7 years", "7-15 years", "More than 15 years"],
@@ -27,7 +27,7 @@ else:
 st.divider()
 
 # Question 2: Financial Cushion
-st.write("**Question 2:** If you lost your job, how long could you survive without touching investments?")
+st.write("**Question 2:** If you lost your job, how long could you survive without selling your investments?")
 cushion = st.radio(
     "Choose one:",
     ["Less than 3 months", "3-6 months", "6-12 months", "More than 12 months"],
@@ -47,10 +47,10 @@ st.divider()
 st.write("**Question 3:** Your portfolio drops 20% in one month. What do you do?")
 loss_tolerance = st.radio(
     "Choose one:",
-    ["Sell everything - too risky!", "Sell some to reduce loss", "Wait it out", "Buy more - great opportunity!"],
+    ["Sell everything, too risky!", "Sell some to reduce loss", "Wait it out", "Buy more, great opportunity!"],
     key="q3"
 )
-if loss_tolerance == "Sell everything - too risky!":
+if loss_tolerance == "Sell everything, too risky!":
     score += 1
 elif loss_tolerance == "Sell some to reduce loss":
     score += 2
@@ -81,10 +81,10 @@ st.divider()
 st.write("**Question 5:** How much investing experience do you have?")
 experience = st.radio(
     "Choose one:",
-    ["None - complete beginner", "Savings account or funds", "Trade stocks or ETFs", "Options, leverage, derivatives"],
+    ["None, complete beginner", "Savings account or funds", "Trade stocks or ETFs", "Options, leverage, derivatives"],
     key="q5"
 )
-if experience == "None - complete beginner":
+if experience == "None, complete beginner":
     score += 1
 elif experience == "Savings account or funds":
     score += 2
@@ -115,10 +115,10 @@ st.divider()
 st.write("**Question 7:** Your gains go up 30%, then back to zero. How do you feel?")
 emotion = st.radio(
     "Choose one:",
-    ["Very frustrated - loss feels real", "Disappointed but ok", "Annoyed but learnt something", "No problem - long term will recover"],
+    ["Very frustrated, loss feels real", "Disappointed but ok", "Annoyed but learnt something", "No problem, long term will recover"],
     key="q7"
 )
-if emotion == "Very frustrated - loss feels real":
+if emotion == "Very frustrated, loss feels real":
     score += 1
 elif emotion == "Disappointed but ok":
     score += 2
@@ -148,10 +148,17 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             profile = "Conservative"
 
             description = "You value safety over growth. You want predictable returns with minimal losses."
+
             allocation = "70% Bonds, 20% ETFs, 10% Cash"
+
             products = "- Government bonds\n- Bond ETFs (iShares, Vanguard)\n- High-yield savings accounts"
+
             avoid = "- Individual stocks\n- Crypto\n- Leverage/margin trading"
+
             monthly_plan = f"Bonds: $ {int(monthly_amount * 0.7):,}\nETFs: ${int(monthly_amount * 0.2):,}\nCash: ${int(monthly_amount * 0.1):,}"
+
+            monthly_plan = f"Bonds: ${int(monthly_amount * 0.7):,}\nETFs: ${int(monthly_amount * 0.2):,}\nCash: ${int(monthly_amount * 0.1):,}"
+
             pros = "- Sleep well at night\n- Unlikely to panic\n- Stable and predictable"
             cons = "- Low returns (2-4% yearly)\n- Inflation erodes value\n- May miss growth opportunities"
             
