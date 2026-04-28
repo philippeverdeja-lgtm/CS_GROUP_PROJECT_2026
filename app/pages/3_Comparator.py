@@ -6,6 +6,7 @@ import pandas as pd
 import plotly.express as px
 import yfinance as yf
 from yahooquery import Ticker
+import requests
 
 # page setup
 st.set_page_config(page_title="Stock Analyzer", page_icon="📊", layout="wide")
@@ -13,8 +14,50 @@ st.set_page_config(page_title="Stock Analyzer", page_icon="📊", layout="wide")
 st.title("📊 Stock Analyzer")
 st.write("Search for a stock to get detailed financial data, charts and comparisons.")
 
+# ── Search Yahoo Finance ──────────────────────────────────────────────────────
+@st.cache_data(show_spinner=False)
+def search_stocks(query):
+    if not query or len(query) < 2:
+        return []
+    try:
+        url = f"https://query2.finance.yahoo.com/v1/finance/search?q={query}&quotesCount=8&newsCount=0&enableFuzzyQuery=true"
+        headers = {"User-Agent": "Mozilla/5.0"}
+        r = requests.get(url, headers=headers, timeout=5)
+        data = r.json()
+        results = []
+        for item in data.get("quotes", []):
+            ticker   = item.get("symbol", "")
+            name     = item.get("longname") or item.get("shortname") or ""
+            exchange = item.get("exchDisp", "")
+            typ      = item.get("quoteType", "")
+            if ticker and typ in ("EQUITY", "ETF", "MUTUALFUND"):
+                label = f"{ticker} — {name} ({exchange})"
+                results.append({"label": label, "ticker": ticker, "name": name})
+        return results
+    except Exception:
+        return []
+
 # --- Search bar for first stock ---
-ticker_input = st.text_input("Search a stock (e.g. AAPL, GOOG, MSFT, NESN.SW)").upper()
+search_query = st.text_input("Search a stock (e.g. Nestlé, AAPL, GOOG, MSFT)", 
+                              placeholder="Type company name or ticker...",
+                              key="main_search")
+
+ticker_input = None
+
+if search_query:
+    with st.spinner("Searching..."):
+        results = search_stocks(search_query)
+    
+    if results:
+        options = ["select a stock"] + [r["label"] for r in results]
+        chosen = st.selectbox("Results", options, key="main_selectbox")
+        
+        if chosen != "select a stock":
+            match = next((r for r in results if r["label"] == chosen), None)
+            if match:
+                ticker_input = match["ticker"]
+    else:
+        st.warning("No results found. Try a different search term.")
 
 # --- Ask how many stocks to compare ---
 # we only show extra inputs if user wants to compare
@@ -26,14 +69,37 @@ n_compare = st.radio(
 
 # --- Extra ticker inputs if comparing ---
 # we store all tickers in a list
-all_tickers = [ticker_input]
+all_tickers = []
+if ticker_input:
+    all_tickers = [ticker_input]
 
 if n_compare > 1 and ticker_input:
+    st.markdown("##### Add stocks to compare")
     extra_cols = st.columns(n_compare - 1)
     for i, col in enumerate(extra_cols):
         with col:
-            extra = st.text_input(f"Stock {i+2} (e.g. MSFT)").upper()
-            all_tickers.append(extra)
+            extra_search = st.text_input(f"Stock {i+2} (company name or ticker)",
+                                         placeholder="Type to search...",
+                                         key=f"extra_search_{i}")
+            
+            extra_ticker = None
+            if extra_search:
+                with st.spinner("Searching..."):
+                    extra_results = search_stocks(extra_search)
+                
+                if extra_results:
+                    extra_options = ["select"] + [r["label"] for r in extra_results]
+                    extra_chosen = st.selectbox("Results", extra_options, 
+                                               key=f"extra_selectbox_{i}",
+                                               label_visibility="collapsed")
+                    
+                    if extra_chosen != "select":
+                        extra_match = next((r for r in extra_results if r["label"] == extra_chosen), None)
+                        if extra_match:
+                            extra_ticker = extra_match["ticker"]
+            
+            if extra_ticker:
+                all_tickers.append(extra_ticker)
 
 # remove empty tickers from list
 all_tickers = [t for t in all_tickers if t]
@@ -78,7 +144,7 @@ def get_stock_data(ticker):
 
 # --- Only run if user typed at least one ticker ---
 if not all_tickers:
-    st.info("👆 Type a stock ticker above to get started.")
+    st.info("👆 Search for a stock above to get started.")
     st.stop()
 
 # fetch data for all tickers
