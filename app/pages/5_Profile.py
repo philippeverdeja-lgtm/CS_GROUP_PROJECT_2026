@@ -189,7 +189,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             cons = "- Experience 40-50%+ drawdowns\n- Individual stock picks can fail\n- Requires discipline and risk management"
         
         # Display results
-        st.success(f"{emoji} Your Profile: {profile}")
+        st.success(f"Your Profile: {profile}")
         st.write(f"**Description:** {description}")
         st.divider()
         
