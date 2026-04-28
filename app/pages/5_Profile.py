@@ -155,9 +155,15 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
 
             avoid = "- Individual stocks\n- Crypto\n- Leverage/margin trading"
 
-            monthly_plan = f"Bonds: $ {int(monthly_amount * 0.7):,}\nETFs: ${int(monthly_amount * 0.2):,}\nCash: ${int(monthly_amount * 0.1):,}"
+            st.markdown("**Your Monthly Plan:**")
+            st.markdown(f"""
+            Bonds: ${int(monthly_amount * 0.7):,}
 
-            monthly_plan = f"Bonds: ${int(monthly_amount * 0.7):,}\nETFs: ${int(monthly_amount * 0.2):,}\nCash: ${int(monthly_amount * 0.1):,}"
+            ETFs: ${int(monthly_amount * 0.2):,}
+
+            Cash: ${int(monthly_amount * 0.1):,}
+            """)
+
 
             pros = "- Sleep well at night\n- Unlikely to panic\n- Stable and predictable"
             cons = "- Low returns (2-4% yearly)\n- Inflation erodes value\n- May miss growth opportunities"
