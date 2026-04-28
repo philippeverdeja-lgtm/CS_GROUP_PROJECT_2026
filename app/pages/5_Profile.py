@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Investor Profile", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Investor Profile", layout="wide")
 
 st.title("Investor Profile ")
 st.write("Answer these questions to find out what type of investor you are.")
@@ -17,7 +17,7 @@ time_horizon = st.radio(
     key="q1"
 )
 if time_horizon == "Less than 3 years":
-    score += 0
+    score += 1
 elif time_horizon == "3-7 years":
     score += 2
 elif time_horizon == "7-15 years":
@@ -34,9 +34,9 @@ cushion = st.radio(
     key="q2"
 )
 if cushion == "Less than 3 months":
-    score += 0
-elif cushion == "3-6 months":
     score += 1
+elif cushion == "3-6 months":
+    score += 2
 elif cushion == "6-12 months":
     score += 3
 else:
@@ -51,9 +51,9 @@ loss_tolerance = st.radio(
     key="q3"
 )
 if loss_tolerance == "Sell everything - too risky!":
-    score += 0
-elif loss_tolerance == "Sell some to reduce loss":
     score += 1
+elif loss_tolerance == "Sell some to reduce loss":
+    score += 2
 elif loss_tolerance == "Wait it out":
     score += 3
 else:
@@ -68,7 +68,7 @@ goal = st.radio(
     key="q4"
 )
 if goal == "Keep money safe":
-    score += 0
+    score += 1
 elif goal == "Generate regular income":
     score += 2
 elif goal == "Build wealth over time":
@@ -85,9 +85,9 @@ experience = st.radio(
     key="q5"
 )
 if experience == "None - complete beginner":
-    score += 0
-elif experience == "Savings account or funds":
     score += 1
+elif experience == "Savings account or funds":
+    score += 2
 elif experience == "Trade stocks or ETFs":
     score += 3
 else:
@@ -102,9 +102,9 @@ capacity = st.radio(
     key="q6"
 )
 if capacity == "Less than 5%":
-    score += 0
-elif capacity == "5-15%":
     score += 1
+elif capacity == "5-15%":
+    score += 2
 elif capacity == "15-30%":
     score += 3
 else:
@@ -119,7 +119,7 @@ emotion = st.radio(
     key="q7"
 )
 if emotion == "Very frustrated - loss feels real":
-    score += 0
+    score += 1
 elif emotion == "Disappointed but ok":
     score += 2
 elif emotion == "Annoyed but learnt something":
@@ -144,7 +144,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
         st.warning("Please enter your monthly investment amount")
     else:
         # Determine profile based on score
-        if score <= 10:
+        if score <= 7:
             profile = "Conservative"
             emoji = "🛡️"
             description = "You value safety over growth. You want predictable returns with minimal losses."
@@ -155,7 +155,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             pros = "- Sleep well at night\n- Unlikely to panic\n- Stable and predictable"
             cons = "- Low returns (2-4% yearly)\n- Inflation erodes value\n- May miss growth opportunities"
             
-        elif score <= 18:
+        elif score <= 14:
             profile = "Balanced"
             emoji = "⚖️"
             description = "You want both growth and safety. You accept some risk for better long-term returns."
@@ -166,7 +166,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             pros = "- Good growth (5-7% yearly)\n- Manageable volatility\n- Flexible and balanced"
             cons = "- May feel conflicted during crashes\n- Temptation to 'do something'\n- Less growth than aggressive"
             
-        elif score <= 26:
+        elif score <= 21:
             profile = "Growth-Focused"
             emoji = "🚀"
             description = "You're return-oriented and handle volatility. You believe in long-term investing."
@@ -222,6 +222,3 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
         st.write(f"**Your Monthly Plan (${monthly_amount:,}):**")
         st.write(monthly_plan)
         st.divider()
-        
-        # Disclaimer
-        st.info("⚖️ This is educational only, not financial advice. Consult a financial advisor before investing.")
