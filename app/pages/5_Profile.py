@@ -155,7 +155,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
 
             avoid = "- Individual stocks\n- Crypto\n- Leverage/margin trading"
 
-                st.markdown("**Your Monthly Plan:**")
+            st.markdown("**Your Monthly Plan:**")
                 st.markdown(f"""
                 Bonds: ${int(monthly_amount * 0.7):,}
 
