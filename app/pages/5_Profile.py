@@ -144,20 +144,20 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
         st.warning("Please enter your monthly investment amount")
     else:
         # Determine profile based on score
-        if score <= 7:
+        if score <= 10:
             profile = "Conservative"
-            emoji = "🛡️"
+
             description = "You value safety over growth. You want predictable returns with minimal losses."
             allocation = "70% Bonds, 20% ETFs, 10% Cash"
             products = "- Government bonds\n- Bond ETFs (iShares, Vanguard)\n- High-yield savings accounts"
             avoid = "- Individual stocks\n- Crypto\n- Leverage/margin trading"
-            monthly_plan = f"Bonds: ${int(monthly_amount * 0.7):,}\nETFs: ${int(monthly_amount * 0.2):,}\nCash: ${int(monthly_amount * 0.1):,}"
+            monthly_plan = f"Bonds: $ {int(monthly_amount * 0.7):,}\nETFs: ${int(monthly_amount * 0.2):,}\nCash: ${int(monthly_amount * 0.1):,}"
             pros = "- Sleep well at night\n- Unlikely to panic\n- Stable and predictable"
             cons = "- Low returns (2-4% yearly)\n- Inflation erodes value\n- May miss growth opportunities"
             
         elif score <= 14:
             profile = "Balanced"
-            emoji = "⚖️"
+
             description = "You want both growth and safety. You accept some risk for better long-term returns."
             allocation = "50% Growth, 40% Bonds, 10% Cash"
             products = "- Index ETFs (VTI, VTSAX)\n- Bond ETFs (BND, VBTLX)\n- Dividend ETFs"
@@ -168,7 +168,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             
         elif score <= 21:
             profile = "Growth-Focused"
-            emoji = "🚀"
+
             description = "You're return-oriented and handle volatility. You believe in long-term investing."
             allocation = "75% Growth, 20% Bonds, 5% Opportunistic"
             products = "- Total market ETF (VTI, ITOT)\n- Tech ETF (QQQ)\n- International ETF (VXUS)\n- Dividend stocks"
@@ -179,7 +179,7 @@ if st.button("Show My Profile", type="primary", use_container_width=True):
             
         else:
             profile = "Aggressive"
-            emoji = "⚡"
+
             description = "You chase maximum returns and handle major swings. You have real investment experience."
             allocation = "60% ETFs, 20% Growth Sectors, 10% Stocks, 5% Crypto, 5% Cash"
             products = "- Growth ETFs (QQQ, VUG)\n- Individual high-conviction stocks\n- Bitcoin/Ethereum (small portion)\n- Emerging markets ETF"
