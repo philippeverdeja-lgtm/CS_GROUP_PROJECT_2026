@@ -6,6 +6,19 @@ st.title("Investor Profile ")
 st.write("Answer these questions to find out what type of investor you are.")
 st.divider()
 
+st.markdown("""
+    <style>
+    .monopoly-man {
+        position: fixed;
+        top: 60px;
+        right: 20px;
+        width: 150px;
+        z-index: 9999;
+    }
+    </style>
+    <img class="monopoly-man" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtleW5nNnJqdjA1aW5hODRsZGhzZzE5ZTJpcHRydDR4ZDU0Z21qayZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/C8976bDqhEUk40i8XU/giphy.gif">
+""", unsafe_allow_html=True)
+
 # Initialize score for each questionary
 score = 0
 
