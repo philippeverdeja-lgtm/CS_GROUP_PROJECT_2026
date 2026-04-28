@@ -9,9 +9,9 @@ from yahooquery import Ticker
 import requests
 
 # page setup
-st.set_page_config(page_title="Stock Analyzer", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Stock Analyzer", page_icon="", layout="wide")
 
-st.title("📊 Stock Analyzer")
+st.title(" Stock Comparator")
 st.write("Search for a stock to get detailed financial data, charts and comparisons.")
 
 # ── Search Yahoo Finance ──────────────────────────────────────────────────────
