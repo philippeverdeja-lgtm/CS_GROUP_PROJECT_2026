@@ -215,32 +215,54 @@ st.divider()
 
 # Question 8: Monthly Investment Amount
 st.write("**Question 8:** How much can you invest per month? (USD)")
-monthly_amount = st.number_input("Enter amount:", min_value=0, max_value=100000, step=100, key="q8") #this is not a st.radio anymore,
+monthly_amount = st.number_input("Enter amount:", min_value = 0, step = 100, key="q8") #this is not a st.radio anymore,
 
-#here the user can put in his monthly amount he wants to invest
+#here the user can put in his monthly amount he wants to invest the minimum value is 0, there is no max value for very rich people
+
+#on the right of the intput there is a button that allows to add +100
+
+#this is all stored in the variable "monthly_amount"
+
+
 st.divider()
 
 
 st.write(f"**Your Score: {score} / 28**")   #this just writes in numbers the score of the questionary 
 st.progress(score / 28) #this shows graphically the result 
 
-# Button to see results
-if st.button("Show My Profile", type="primary", width="stretch"):
+
+if st.button("Show My Profile", type="primary", width="stretch"):    # This is the button to see the results
     
-    if monthly_amount == 0:
+    if monthly_amount == 0: # if the user didn't put in any amount, the appl blocks him before going furhter and shows an error message
+                            #such that he must first enter any amount
+
+
         st.warning("Please enter your monthly investment amount")
+
+        #if the amount is > 0 this goes:
     else:
-        # Determine profile based on score
-        if score <= 10:
-            profile = "Conservative"
+
+
+
+            #based on each score there are different levels from low to high scores
+
+        if score <= 10: #if the score after the questionary is higher than 10 the different variables 
+                        # have these information in them
+
+
+            profile = "Conservative" #this variable is the name of the profile
 
             description = "You value safety over growth. You want predictable returns with minimal losses."
+            #this variable explains to the user what type of invesotr he is
 
             allocation = "70% Bonds, 20% ETFs, 10% Cash"
+            #this proposes a simple portfolio allocation
 
             products = "- Government bonds\n- Bond ETFs (iShares, Vanguard)\n- High-yield savings accounts"
+            #this gives example of products the users could invest in
 
             avoid = "- Individual stocks\n- Crypto\n- Leverage/margin trading"
+            #this gives the user advices on investments he should avoid
 
             monthly_plan = (
          f"Bonds: {int(monthly_amount * 0.7)} "
@@ -248,47 +270,76 @@ if st.button("Show My Profile", type="primary", width="stretch"):
          f"Cash: {int(monthly_amount * 0.1)}"
          )
 
+         #this calculates a montly plan based on his monthly_amount he put in at the end of the questionary and stores
+         #it in the variable monthly_plan
+
                 
             
-
+            #the two last variables explains what are the pros and cons of this investment strategy and stores the description 
+            #in their variables
             pros = "- Sleep well at night\n- Unlikely to panic\n- Stable and predictable"
+            
             cons = "- Low returns (2-4% yearly)\n- Inflation erodes value\n- May miss growth opportunities"
             
+            #the same is the repeated for all the other investor profiles / investment strategies
+
+
         elif score <= 14:
             profile = "Balanced"
 
             description = "You want both growth and safety. You accept some risk for better long-term returns."
+
             allocation = "50% Growth, 40% Bonds, 10% Cash"
+            
             products = "- Index ETFs (VTI, VTSAX)\n- Bond ETFs (BND, VBTLX)\n- Dividend ETFs"
+            
             avoid = "- Individual stocks (unless experienced)\n- Crypto/speculative assets\n- Frequent trading"
+            
             monthly_plan = f"Growth: ${int(monthly_amount * 0.5):,}\nBonds: ${int(monthly_amount * 0.4):,}\nCash: ${int(monthly_amount * 0.1):,}"
+            
             pros = "- Good growth (5-7% yearly)\n- Manageable volatility\n- Flexible and balanced"
+            
             cons = "- May feel conflicted during crashes\n- Temptation to 'do something'\n- Less growth than aggressive"
             
         elif score <= 21:
             profile = "Growth-Focused"
 
             description = "You're return-oriented and handle volatility. You believe in long-term investing."
+           
             allocation = "75% Growth, 20% Bonds, 5% Opportunistic"
+           
             products = "- Total market ETF (VTI, ITOT)\n- Tech ETF (QQQ)\n- International ETF (VXUS)\n- Dividend stocks"
+           
             avoid = "- Leverage/margin trading\n- Crypto (unless you understand it)\n- Over-concentrated bets\n- Day trading"
+           
             monthly_plan = f"Growth: ${int(monthly_amount * 0.75):,}\nBonds: ${int(monthly_amount * 0.2):,}\nOpportunistic: ${int(monthly_amount * 0.05):,}"
+           
             pros = "- High returns (8-10% yearly)\n- Weather downturns well\n- Build real wealth"
+           
             cons = "- Experience 20-30% drops regularly\n- Requires discipline\n- Temptation to over-trade"
             
         else:
             profile = "Aggressive"
 
             description = "You chase maximum returns and handle major swings. You have real investment experience."
+            
             allocation = "60% ETFs, 20% Growth Sectors, 10% Stocks, 5% Crypto, 5% Cash"
+            
             products = "- Growth ETFs (QQQ, VUG)\n- Individual high-conviction stocks\n- Bitcoin/Ethereum (small portion)\n- Emerging markets ETF"
+            
             avoid = "- Leverage (unless experienced)\n- Penny stocks\n- 100% crypto portfolio\n- All-in on single stocks"
+            
             monthly_plan = f"Core ETFs: ${int(monthly_amount * 0.6):,}\nGrowth Sectors: ${int(monthly_amount * 0.2):,}\nIndividual Stocks: ${int(monthly_amount * 0.1):,}\nCrypto: ${int(monthly_amount * 0.05):,}\nCash: ${int(monthly_amount * 0.05):,}"
+            
             pros = "- Potential 10-15%+ returns yearly\n- See downturns as opportunities\n- Not constrained by traditional assets"
+            
             cons = "- Experience 40-50%+ drawdowns\n- Individual stock picks can fail\n- Requires discipline and risk management"
         
-        # Display results
-        st.success(f"Your Profile: {profile}")
+
+
+
+        # This the displays th results.
+        st.badge(f"Your Profile: {profile}")
         st.write(f"**Description:** {description}")
         st.divider()
         
