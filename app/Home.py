@@ -29,7 +29,7 @@ col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     st.subheader("Basics")
-    st.write("Fundamentals of investing")
+    st.write("Understand the fundamentals of investing")
 
 
 with col2:
@@ -39,12 +39,12 @@ with col2:
 
 with col3:
     st.subheader("Comparator")
-    st.write("Compare stocks and ETFs")
+    st.write("Compare stocks")
 
 
 with col4:
     st.subheader("News")
-    st.write("Stay updated with latest information")
+    st.write("Stay updated with latest News")
 
 
 
