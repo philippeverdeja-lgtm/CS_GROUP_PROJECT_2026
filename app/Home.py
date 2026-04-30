@@ -25,20 +25,21 @@ st.markdown("""
         width: 150px;
         z-index: 9999;
     }
+
+
+    .stPageLink button {
+        background-color: #FF6B6B !important;
+        color: white !important;
+    }
+    .stPageLink button:hover {
+        background-color: #CC0000 !important;
+    }
+
+    
     </style>
     <img class="monopoly-man" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtleW5nNnJqdjA1aW5hODRsZGhzZzE5ZTJpcHRydDR4ZDU0Z21qayZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/C8976bDqhEUk40i8XU/giphy.gif">
 """, unsafe_allow_html=True)
 
-
-
-st.markdown("""
-    <style>
-    .stPageLink button {
-        background-color: #1f77b4 !important;
-        color: white !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 #divider for layout
 st.divider()
