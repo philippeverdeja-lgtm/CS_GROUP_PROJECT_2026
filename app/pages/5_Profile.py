@@ -265,8 +265,8 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             #this gives the user advices on investments he should avoid
 
             monthly_plan = (
-         f"Bonds: $ {int(monthly_amount * 0.7)}"
-         f"ETFs: $ {int(monthly_amount * 0.2)}"
+         f"Bonds: $ {int(monthly_amount * 0.7)}\n"
+         f"ETFs: $ {int(monthly_amount * 0.2)}\n"
          f"Cash: $ {int(monthly_amount * 0.1)}"
          )
 
