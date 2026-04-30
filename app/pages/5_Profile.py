@@ -4,6 +4,10 @@ st.set_page_config(page_title="Investor Profile", layout="wide")
 
 st.title("Investor Profile ")
 st.write("Answer these questions to find out what type of investor you are.")
+
+st.page_link("app/Home.py", label="Go to Homepage")
+
+
 st.divider()
 
 st.markdown("""
