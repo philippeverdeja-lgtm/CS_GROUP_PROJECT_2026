@@ -242,7 +242,7 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
         #if the amount is > 0 this goes:
     else:
 
-
+#first level, concervative
 
             #based on each score there are different levels from low to high scores
 
@@ -284,6 +284,9 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             #the same is the repeated for all the other investor profiles / investment strategies
 
 
+
+#second level, balanced
+
         elif score <= 14:
             profile = "Balanced"
 
@@ -301,6 +304,9 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             
             cons = "- May feel conflicted during crashes\n- Temptation to 'do something'\n- Less growth than aggressive"
             
+
+#third level, growth
+
         elif score <= 21:
             profile = "Growth-Focused"
 
@@ -318,6 +324,9 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
            
             cons = "- Experience 20-30% drops regularly\n- Requires discipline\n- Temptation to over-trade"
             
+
+#fourth level, aggressive
+
         else:
             profile = "Aggressive"
 
@@ -338,15 +347,22 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
 
 
 
-        # This the displays th results.
-        st.title(f"Your Profile: :blue[_{profile}_]")
-        st.write(f"**Description:** {description}")
+        # This the displays th results.$
+        #since all the results are stored in different variables, here we just need to call them. Further since they are only 
+        #assigned in the different score levels, at the end of the questionary, every variable is correctly assigned with the if
+        #statements
+        #ex.  score = 15 
+        # first level is not assigned so program goes to the second level where all variables are assigned to the strings
+
+
+        st.title(f"Your Profile: :blue[_{profile}_]") #title with cool text effect from variable profile
+        st.write(f"**Description:** {description}") #variable description
         st.divider()
         
         # Pros and Cons
         col1, col2 = st.columns(2)
         with col1:
-            st.write("**✅ Strengths:**")
+            st.write(":green[**Strengths:**]")
             st.write(pros)
         with col2:
             st.write("**⚠️ Challenges:**")
