@@ -265,9 +265,9 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             #this gives the user advices on investments he should avoid
 
             monthly_plan = (
-         f"Bonds:$ {int(monthly_amount * 0.7)}"
-         f"ETFs:${int(monthly_amount * 0.2)}"
-         f"Cash:${int(monthly_amount * 0.1)}"
+         f"Bonds: $ {int(monthly_amount * 0.7)}"
+         f"ETFs: $ {int(monthly_amount * 0.2)}"
+         f"Cash: $ {int(monthly_amount * 0.1)}"
          )
 
          #this calculates a montly plan based on his monthly_amount he put in at the end of the questionary and stores
