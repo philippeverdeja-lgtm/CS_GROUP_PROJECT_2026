@@ -255,7 +255,13 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             description = "You value safety over growth. You want predictable returns with minimal losses."
             #this variable explains to the user what type of invesotr he is
 
-            allocation = "70% Bonds, 20% ETFs, 10% Cash"
+            allocation = (
+                f"- 70% Bonds\n"
+                f"- 20% ETFs \n"
+                f"- 10 Cash\n"
+            )
+
+
             #this proposes a simple portfolio allocation
 
             products = "- Government bonds\n- Bond ETFs (iShares, Vanguard)\n- High-yield savings accounts"
@@ -293,7 +299,13 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
 
             description = "You want both growth and safety. You accept some risk for better long-term returns."
 
-            allocation = "50% Growth, 40% Bonds, 10% Cash"
+            allocation = (
+                f"- 50% Growth\n"
+                f"- 40% Bonds\n"
+                f"- 10% Cash\n"
+            )
+            
+
             
             products = "- Index ETFs (VTI, VTSAX)\n- Bond ETFs (BND, VBTLX)\n- Dividend ETFs"
             
@@ -317,7 +329,15 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
 
             description = "You're return-oriented and handle volatility. You believe in long-term investing."
            
-            allocation = "75% Growth, 20% Bonds, 5% Opportunistic"
+            allocation = (
+                f"- 75% Growth\n"
+                f"- 20% Bonds\n"
+                f"- 5% Opportunistic"                    
+
+            )
+            
+            
+
            
             products = "- Total market ETF (VTI, ITOT)\n- Tech ETF (QQQ)\n- International ETF (VXUS)\n- Dividend stocks"
            
@@ -341,7 +361,16 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
 
             description = "You chase maximum returns and handle major swings. You have real investment experience."
             
-            allocation = "60% ETFs, 20% Growth Sectors, 10% Stocks, 5% Crypto, 5% Cash"
+            allocation = (
+                f"- 60% ETFs\n"
+                f"- 20% Growth Sectors\n"
+                f"- 10% Stocks\n"
+                f"- 5% Crypto\n"
+                f"- 5% Cash"
+
+            )
+            
+
             
             products = "- Growth ETFs (QQQ, VUG)\n- Individual high-conviction stocks\n- Bitcoin/Ethereum (small portion)\n- Emerging markets ETF"
             
