@@ -387,5 +387,5 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
         
         # Here is a recommendation of how much to invest in what each month
         st.header(f"**Your Monthly Plan (${monthly_amount:,}):**")
-        st.write(monthly_plan)
+        st.markdown(monthly_plan)
         st.divider()
