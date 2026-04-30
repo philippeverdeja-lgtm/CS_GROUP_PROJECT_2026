@@ -66,6 +66,16 @@ with col5:
 
 #Here are the buttons that allow the anvigation between the different pages of our website. 
 
+st.markdown("""
+    <style>
+    .stPageLink button {
+        background-color: #FF6B6B !important;
+        color: white !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 st.divider()
 
 col1, col2, col3, col4, col5 = st.columns(5)
