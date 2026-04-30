@@ -1,15 +1,27 @@
+#this page is about the portfolio analyzer
+#The questionary asks 7 questions + how much the user wants to invest
+#every question give 1 to 4 points, the higher the points at the end, the higher the risk tolerance 
+
+
+#this imports streamlit
 import streamlit as st
 
+
+#page configuration and titles
 st.set_page_config(page_title="Investor Profile", layout="wide")
 
 st.title("Investor Profile ")
 st.write("Answer these questions to find out what type of investor you are.")
 
+
+#home button
 st.page_link("Home.py", label="Go to Homepage")
 
 
 st.divider()
 
+
+#monopoly man
 st.markdown("""
     <style>
     .monopoly-man {
@@ -23,16 +35,23 @@ st.markdown("""
     <img class="monopoly-man" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtleW5nNnJqdjA1aW5hODRsZGhzZzE5ZTJpcHRydDR4ZDU0Z21qayZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/C8976bDqhEUk40i8XU/giphy.gif">
 """, unsafe_allow_html=True)
 
-# Initialize score for each questionary
+# Initialize score for each questionary to 0 every time
 score = 0
 
 # Question 1: Time Horizon
 st.write("**Question 1:** How long until you need this money?")
+
+#using st.radio alows to ask the question and so the user can select one answer
 time_horizon = st.radio(
     "Choose one:",
-    ["Less than 3 years", "3-7 years", "7-15 years", "More than 15 years"],
-    key="q1"
+    ["Less than 3 years", "3-7 years", "7-15 years", "More than 15 years"],  #here are the different answer posibilities
+    key="q1"    #this is important because it stabilizes the qestionary, every widget has a unique key and stabilizes the widget's identity
+                #and preserves its state when other parameters chenge
+                #it basically makes sure that answer 1 stays in question 1, answer 2 in question 2 etc. so no values get mixed up
 )
+
+
+#here are the answers attributed to a number of points with a simple if function
 if time_horizon == "Less than 3 years":
     score += 1
 elif time_horizon == "3-7 years":
@@ -41,15 +60,25 @@ elif time_horizon == "7-15 years":
     score += 3
 else:
     score += 4
+
+#ever result is always added into the variable score
+
 st.divider()
+
+#the same is happening for all other questions up to question 7
+
 
 # Question 2: Financial Cushion
 st.write("**Question 2:** If you lost your job, how long could you survive without selling your investments?")
+
+
 cushion = st.radio(
     "Choose one:",
     ["Less than 3 months", "3-6 months", "6-12 months", "More than 12 months"],
     key="q2"
 )
+
+
 if cushion == "Less than 3 months":
     score += 1
 elif cushion == "3-6 months":
@@ -58,15 +87,21 @@ elif cushion == "6-12 months":
     score += 3
 else:
     score += 4
+
+
 st.divider()
 
 # Question 3: Loss Tolerance
 st.write("**Question 3:** Your portfolio drops 20% in one month. What do you do?")
+
+
 loss_tolerance = st.radio(
     "Choose one:",
     ["Sell everything, too risky!", "Sell some to reduce loss", "Wait it out", "Buy more, great opportunity!"],
     key="q3"
 )
+
+
 if loss_tolerance == "Sell everything, too risky!":
     score += 1
 elif loss_tolerance == "Sell some to reduce loss":
@@ -75,15 +110,21 @@ elif loss_tolerance == "Wait it out":
     score += 3
 else:
     score += 4
+
+
 st.divider()
 
 # Question 4: Investment Goal
 st.write("**Question 4:** What's your main investment goal?")
+
+
 goal = st.radio(
     "Choose one:",
     ["Keep money safe", "Generate regular income", "Build wealth over time", "Maximum returns at any cost"],
     key="q4"
 )
+
+
 if goal == "Keep money safe":
     score += 1
 elif goal == "Generate regular income":
@@ -92,15 +133,21 @@ elif goal == "Build wealth over time":
     score += 3
 else:
     score += 4
+
+
 st.divider()
 
 # Question 5: Experience
 st.write("**Question 5:** How much investing experience do you have?")
+
+
 experience = st.radio(
     "Choose one:",
     ["None, complete beginner", "Savings account or funds", "Trade stocks or ETFs", "Options, leverage, derivatives"],
     key="q5"
 )
+
+
 if experience == "None, complete beginner":
     score += 1
 elif experience == "Savings account or funds":
@@ -109,15 +156,24 @@ elif experience == "Trade stocks or ETFs":
     score += 3
 else:
     score += 4
+
+
+
+
 st.divider()
 
 # Question 6: Monthly Investment Capacity
 st.write("**Question 6:** What % of monthly income can you invest comfortably?")
+
+
 capacity = st.radio(
     "Choose one:",
     ["Less than 5%", "5-15%", "15-30%", "More than 30%"],
     key="q6"
 )
+
+
+
 if capacity == "Less than 5%":
     score += 1
 elif capacity == "5-15%":
@@ -126,15 +182,22 @@ elif capacity == "15-30%":
     score += 3
 else:
     score += 4
+
+
+
 st.divider()
 
 # Question 7: Emotional Resilience
 st.write("**Question 7:** Your gains go up 30%, then back to zero. How do you feel?")
+
+
 emotion = st.radio(
     "Choose one:",
     ["Very frustrated, loss feels real", "Disappointed but ok", "Annoyed but learnt something", "No problem, long term will recover"],
     key="q7"
 )
+
+
 if emotion == "Very frustrated, loss feels real":
     score += 1
 elif emotion == "Disappointed but ok":
@@ -143,19 +206,26 @@ elif emotion == "Annoyed but learnt something":
     score += 3
 else:
     score += 4
+
+
+
+
+
 st.divider()
 
 # Question 8: Monthly Investment Amount
 st.write("**Question 8:** How much can you invest per month? (USD)")
-monthly_amount = st.number_input("Enter amount:", min_value=0, max_value=100000, step=100, key="q8")
+monthly_amount = st.number_input("Enter amount:", min_value=0, max_value=100000, step=100, key="q8") #this is not a st.radio anymore,
+
+#here the user can put in his monthly amount he wants to invest
 st.divider()
 
-# Show progress
-st.write(f"**Your Score: {score} / 28**")
-st.progress(score / 28)
+
+st.write(f"**Your Score: {score} / 28**")   #this just writes in numbers the score of the questionary 
+st.progress(score / 28) #this shows graphically the result 
 
 # Button to see results
-if st.button("Show My Profile", type="primary", use_container_width=True):
+if st.button("Show My Profile", type="primary", width="stretch"):
     
     if monthly_amount == 0:
         st.warning("Please enter your monthly investment amount")
