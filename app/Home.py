@@ -24,12 +24,13 @@ st.markdown("""
 #divider for layout
 st.divider()
 
-# Layout with columns
+# Layout with columns and themes
 col1, col2, col3, col4, col5 = st.columns(5) 
 
 with col1:
     st.subheader("Basics")
     st.write("Fundamentals of investing")
+    st.page_link("pages/1_Basics.py", label="Go to Basics")
 
 with col2:
     st.subheader("Analyzer")
