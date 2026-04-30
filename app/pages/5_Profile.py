@@ -339,7 +339,7 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
 
 
         # This the displays th results.
-        st.title(f"Your Profile: blue[_{profile}_]")
+        st.title(f"Your Profile: :blue[_{profile}_]")
         st.write(f"**Description:** {description}")
         st.divider()
         
