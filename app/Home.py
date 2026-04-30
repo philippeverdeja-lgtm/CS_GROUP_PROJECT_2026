@@ -73,6 +73,7 @@ with col4:
 with col5:
     st.page_link("pages/1_Basics.py", label="Go to Profile")
 
-    
+
+st.divider()
 
 st.info("Use the sidebar to navigate between features")
