@@ -362,7 +362,7 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
         # Pros and Cons
         col1, col2 = st.columns(2)
         with col1:
-            st.write(":green[**Strengths:**]")
+            st.header(":green[**Strengths:**]")
             st.write(pros)
         with col2:
             st.write("**⚠️ Challenges:**")
