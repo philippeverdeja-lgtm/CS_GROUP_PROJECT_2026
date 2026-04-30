@@ -9,6 +9,8 @@ st.set_page_config(page_title="Morning Market Digest", layout="wide")
 st.title("**Morning Market Digest**")
 st.caption(f"Last updated: {datetime.now().strftime('%Y-%m-%d')}")  #date automatically updates every time the page loads
 
+st.page_link("Home.py", label="Go to Homepage")
+
 st.markdown("""
     <style>
     .monopoly-man {

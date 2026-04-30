@@ -9,6 +9,8 @@ st.set_page_config(layout="wide")
 st.title("Investment Basics")
 st.markdown("Learn the fundamentals. Grow your money.")
 
+st.page_link("Home.py", label="Go to Homepage")
+
 st.divider()
 
 st.markdown("""

@@ -14,6 +14,8 @@ st.set_page_config(page_title="Stock Analyzer", page_icon="", layout="wide")
 st.title(" Stock Comparator")
 st.write("Search for a stock to get detailed financial data, charts and comparisons.")
 
+st.page_link("Home.py", label="Go to Homepage")
+
 st.markdown("""
     <style>
     .monopoly-man {

@@ -10,6 +10,8 @@ st.title("Portfolio Allocation")
 
 st.markdown("Search for ticker, company name, ISIN or valor")
 
+st.page_link("Home.py", label="Go to Homepage")
+
 st.markdown("""
     <style>
     .monopoly-man {
