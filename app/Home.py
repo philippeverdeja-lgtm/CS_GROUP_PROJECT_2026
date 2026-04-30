@@ -4,6 +4,14 @@ import streamlit as st
 #page configuration wide
 st.set_page_config(layout="wide")
 
+st.markdown("""
+    <style>
+    [data-testid="column"] {
+        min-height: 250px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("Homepage Easy Investing")
 
 st.info("Welcome!")

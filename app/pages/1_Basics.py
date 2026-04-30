@@ -4,13 +4,6 @@ import streamlit as st
 #page layout wide
 st.set_page_config(layout="wide")
 
-st.markdown("""
-    <style>
-    [data-testid="column"] {
-        min-height: 250px;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 #title and subtitle of the page
 st.title("Investment Basics")
