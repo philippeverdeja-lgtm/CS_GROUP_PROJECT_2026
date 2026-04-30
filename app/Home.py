@@ -4,14 +4,6 @@ import streamlit as st
 #page configuration wide
 st.set_page_config(layout="wide")
 
-st.markdown("""
-    <style>
-    [data-testid="column"] {
-        min-height: 250px;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 st.title("Homepage Easy Investing")
 
 st.info("Welcome!")
@@ -38,28 +30,28 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     st.subheader("Basics")
     st.write("Fundamentals of investing")
-    st.page_link("pages/1_Basics.py", label="Click here for Basics")
+    st.page_link("pages/1_Basics.py", label="Go to Basics")
 
 with col2:
     st.subheader("Analyzer")
     st.write("Create and analyze your portfolio")
-    st.page_link("pages/2_Analyzer.py", label="Click here for Analyzer")
+    st.page_link("pages/2_Analyzer.py", label="Go to Analyzer")
 
 with col3:
     st.subheader("Comparator")
     st.write("Compare stocks and ETFs")
-    st.page_link("pages/3_Comparator.py", label="Click here for Comparator")
+    st.page_link("pages/3_Comparator.py", label="Go to Comparator")
 
 with col4:
     st.subheader("News")
     st.write("Stay updated with latest information")
-    st.page_link("pages/4_News.py", label="Click here for News")
+    st.page_link("pages/4_News.py", label="Go to News")
 
 
 with col5:
     st.subheader("Profile")
     st.write("Find your investor profile!")
-    st.page_link("pages/1_Basics.py", label="Click here for Profile")
+    st.page_link("pages/1_Basics.py", label="Go to Profile")
 
 
 st.divider()
