@@ -359,32 +359,32 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
         st.write(f"**Description:** {description}") #variable description
         st.divider()
         
-        # Pros and Cons
+        # Here are the pros and cons with subheaders
         col1, col2 = st.columns(2)
         with col1:
             st.header(":green[**Strengths:**]")
-            st.write(pros)
+            st.write(pros)     #here also the variable is just pulled and displayed as text
         with col2:
-            st.write("**⚠️ Challenges:**")
-            st.write(cons)
+            st.header(":red[**Challenges:**]")
+            st.write(cons)#same
         st.divider()
         
-        # Allocation
-        st.write("**Your Allocation:**")
-        st.write(allocation)
+        # here is an portfolio allocation recommendantion
+        st.header("**Your Allocation:**")
+        st.write(allocation) #same principle as the others
         st.divider()
         
-        # Products
-        st.write("**Investment Products to Consider:**")
-        st.write(products)
+        # Here are some propositions of products to integrate in the portfolio
+        st.header("**Investment Products to Consider:**")
+        st.write(products)# same as before
         st.divider()
         
-        # What to Avoid
-        st.write("**What to Avoid:**")
-        st.write(avoid)
+        # Here are some recommendations of things to avoid
+        st.header("**What to Avoid:**")
+        st.write(avoid)#same
         st.divider()
         
-        # Monthly Plan
-        st.write(f"**Your Monthly Plan (${monthly_amount:,}):**")
+        # Here is a recommendation of how much to invest in what each month
+        st.header(f"**Your Monthly Plan (${monthly_amount:,}):**")
         st.write(monthly_plan)
         st.divider()
