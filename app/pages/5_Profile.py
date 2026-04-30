@@ -298,9 +298,13 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             products = "- Index ETFs (VTI, VTSAX)\n- Bond ETFs (BND, VBTLX)\n- Dividend ETFs"
             
             avoid = "- Individual stocks (unless experienced)\n- Crypto/speculative assets\n- Frequent trading"
-            
-            monthly_plan = f"Growth: ${int(monthly_amount * 0.5):,}\nBonds: ${int(monthly_amount * 0.4):,}\nCash: ${int(monthly_amount * 0.1):,}"
-            
+                        
+            monthly_plan = (
+         f"- Growth: $ {int(monthly_amount * 0.5)}\n"
+         f"- Bonds: $ {int(monthly_amount * 0.4)}\n"
+         f"- Cash: $ {int(monthly_amount * 0.1)}"
+         )
+
             pros = "- Good growth (5-7% yearly)\n- Manageable volatility\n- Flexible and balanced"
             
             cons = "- May feel conflicted during crashes\n- Temptation to 'do something'\n- Less growth than aggressive"
@@ -318,9 +322,13 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             products = "- Total market ETF (VTI, ITOT)\n- Tech ETF (QQQ)\n- International ETF (VXUS)\n- Dividend stocks"
            
             avoid = "- Leverage/margin trading\n- Crypto (unless you understand it)\n- Over-concentrated bets\n- Day trading"
-           
-            monthly_plan = f"Growth: ${int(monthly_amount * 0.75):,}\nBonds: ${int(monthly_amount * 0.2):,}\nOpportunistic: ${int(monthly_amount * 0.05):,}"
-           
+                      
+            monthly_plan = (
+         f"- Growth: $ {int(monthly_amount * 0.75)}\n"
+         f"- Bonds: $ {int(monthly_amount * 0.2)}\n"
+         f"- Opportunistic: $ {int(monthly_amount * 0.05)}"
+         )
+
             pros = "- High returns (8-10% yearly)\n- Weather downturns well\n- Build real wealth"
            
             cons = "- Experience 20-30% drops regularly\n- Requires discipline\n- Temptation to over-trade"
@@ -338,9 +346,15 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
             products = "- Growth ETFs (QQQ, VUG)\n- Individual high-conviction stocks\n- Bitcoin/Ethereum (small portion)\n- Emerging markets ETF"
             
             avoid = "- Leverage (unless experienced)\n- Penny stocks\n- 100% crypto portfolio\n- All-in on single stocks"
-            
-            monthly_plan = f"Core ETFs: ${int(monthly_amount * 0.6):,}\nGrowth Sectors: ${int(monthly_amount * 0.2):,}\nIndividual Stocks: ${int(monthly_amount * 0.1):,}\nCrypto: ${int(monthly_amount * 0.05):,}\nCash: ${int(monthly_amount * 0.05):,}"
-            
+                        
+            monthly_plan = (
+         f"- ETFs: $ {int(monthly_amount * 0.6)}\n"
+         f"- Growth Sectors: $ {int(monthly_amount * 0.2)}\n"
+         f"- Individual Stocks: $ {int(monthly_amount * 0.1)}\n"
+         f"- Crypto: $ {int(monthly_amount * 0.05)}\n"
+         f"- Cash: $ {int(monthly_amount * 0.05)}"
+         )
+
             pros = "- Potential 10-15%+ returns yearly\n- See downturns as opportunities\n- Not constrained by traditional assets"
             
             cons = "- Experience 40-50%+ drawdowns\n- Individual stock picks can fail\n- Requires discipline and risk management"
