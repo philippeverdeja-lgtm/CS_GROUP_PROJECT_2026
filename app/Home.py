@@ -48,7 +48,7 @@ with col2:
 
 with col3:
     st.subheader("Comparator")
-    st.write("Compare stocks and financial data ")
+    st.write("Compare stocks and financial data")
 
 
 with col4:
