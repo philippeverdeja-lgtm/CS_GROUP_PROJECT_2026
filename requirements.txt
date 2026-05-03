@@ -1,7 +1,13 @@
+# All the external libraries needed to run the Easy Investing website.
+
 streamlit
 yahooquery
 yfinance
 pandas
+numpy
+plotly
+requests
 feedparser
-datetime
-plotly.express
+beautifulsoup4
+scikit-learn
+streamlit-searchbox
