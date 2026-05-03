@@ -1,7 +1,7 @@
 """
 This code is part of the Computer Science Project of group 11.05:
 Philippe Verdeja, Yannick Hafner, Remi de la Fortelle, Mara Ciglia and Sam Pellaud.
-It contains the "Morning Market Digest"-page, split into a top movers section, a financial news feed and a markets overview.
+It contains the "News"-page, split into a top movers section, a financial news feed and a markets overview.
 The idea is to give the user a daily snapshot of what's moving the global markets at a glance.
 On top of that, the page shows live indices from 5 regions and lets the user switch between 1 week, 1 month and 1 year views.
 """
