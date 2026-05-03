@@ -1,10 +1,24 @@
+"""
+This code is part of the Computer Science Project of group 11.05:
+Philippe Verdeja, Yannick Hafner, Remi de la Fortelle, Mara Ciglia and Sam Pellaud.
+It contains the "Portfolio Allocation"-page, where the user can build a portfolio by searching and adding stocks one by one.
+The idea is to give the user a quick way to see how his portfolio is balanced across currencies, regions, industries and risk levels.
+On top of that, beta values from Yahoo Finance are used to label each stock as low, medium or high risk so the user can spot concentration issues at a glance.
+"""
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import yfinance as yf
 import requests
 
-st.set_page_config(page_title="Portfolio Allocation", layout="wide")
+# Page configuration, title, subtitle and tab icon (logo without text)
+# Logo and tab icon by Claude
+st.set_page_config(
+    page_title="Portfolio Allocation",
+    page_icon="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgMzYwIj48cmVjdCB3aWR0aD0iMzYwIiBoZWlnaHQ9IjM2MCIgcng9IjUwIiBmaWxsPSIjMGQxYjJhIi8+PHJlY3QgeD0iNjAiIHk9IjE4MCIgd2lkdGg9IjU1IiBoZWlnaHQ9IjE1MCIgcng9IjQiIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSIxNTIiIHk9IjIzMCIgd2lkdGg9IjU1IiBoZWlnaHQ9IjEwMCIgcng9IjQiIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSIyNDQiIHk9IjEyMCIgd2lkdGg9IjU1IiBoZWlnaHQ9IjIxMCIgcng9IjQiIGZpbGw9IiNmZmZmZmYiLz48cG9seWxpbmUgcG9pbnRzPSIzNSwyNjAgODcuNSwxODAgMTc5LjUsMjMwIDI4NSwxMDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFmOGZmZiIgc3Ryb2tlLXdpZHRoPSIxNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjg1LDEwOCkgcm90YXRlKC00MS42MykiPjxwb2x5Z29uIHBvaW50cz0iLTI2LC0yMiAyMiwwIC0yNiwyMiIgZmlsbD0iIzFmOGZmZiIgc3Ryb2tlPSIjMWY4ZmZmIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L2c+PC9zdmc+",
+    layout="wide"
+)
 
 st.title("Portfolio Allocation")
 
@@ -12,18 +26,39 @@ st.markdown("Search for ticker, company name, ISIN or valor")
 
 st.page_link("Home.py", label="Go to Homepage")
 
+# Adds the logo of our website at the top right corner
 st.markdown("""
     <style>
-    .monopoly-man {
+    .easy-investing-logo {
         position: fixed;
         top: 60px;
         right: 20px;
-        width: 150px;
+        width: 130px;
         z-index: 9999;
     }
     </style>
-    <img class="monopoly-man" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtleW5nNnJqdjA1aW5hODRsZGhzZzE5ZTJpcHRydDR4ZDU0Z21qayZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/C8976bDqhEUk40i8XU/giphy.gif">
+    <div class="easy-investing-logo">
+        <svg viewBox="0 0 680 500" xmlns="http://www.w3.org/2000/svg">
+            <rect x="160" y="40" width="360" height="360" rx="50" fill="#0d1b2a"/>
+            <rect x="220" y="220" width="55" height="150" rx="4" fill="#ffffff"/>
+            <rect x="312" y="270" width="55" height="100" rx="4" fill="#ffffff"/>
+            <rect x="404" y="160" width="55" height="210" rx="4" fill="#ffffff"/>
+            <polyline points="195,300 247.5,220 339.5,270 445,148"
+                      fill="none" stroke="#1f8fff" stroke-width="14"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(445,148) rotate(-41.63)">
+                <polygon points="-26,-22 22,0 -26,22" fill="#1f8fff"
+                         stroke="#1f8fff" stroke-width="6" stroke-linejoin="round"/>
+            </g>
+            <text x="340" y="465" font-size="58" font-weight="800"
+                  text-anchor="middle" letter-spacing="-1"
+                  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+                <tspan fill="#1f8fff">Easy</tspan><tspan fill="#ffffff"> Investing</tspan>
+            </text>
+        </svg>
+    </div>
 """, unsafe_allow_html=True)
+
 
 # ── Region mapping by exchange ────────────────────────────────────────────────
 def get_region(ticker_info):
