@@ -328,7 +328,7 @@ st.markdown("""
    - 5-10 years? → Medium risk (balanced fund)
    - 10+ years? → Can handle more risk (stock-heavy)
 
-\n 2. **Choose your strategy.** Most people benefit from:
+2. **Choose your strategy.** Most people benefit from:
    - **Dollar-cost averaging (DCA):** Invest the same amount every month, regardless of price
    - **Buy and hold:** Invest lump sum, ignore short-term noise
    - **Rebalance annually:** Keep your allocation stable over time
