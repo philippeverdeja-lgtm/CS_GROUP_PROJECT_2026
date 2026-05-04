@@ -338,4 +338,4 @@ st.markdown("""
 4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash. The market always recovers. History shows it.
 """)
 
-st.success(" You now understand the basics. Ready to experiment with the Portfolio Analyzer?")
+st.success(" You now understand the basics. Ready to experiment with **Easy Investing?**")
