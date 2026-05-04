@@ -124,7 +124,7 @@ st.divider()
 col1, col2 = st.columns(2)
 
 
-#in two columns thw concept of risk
+#in two columns, concept of risk
 with col1:
     st.markdown("### Risk & Return")
     st.markdown("""
@@ -168,8 +168,8 @@ with tabs[0]:
     
     **Time horizon:** 5+ years recommended
     
-    **Example:** You own 10 shares of Apple at $150/share = $1,500 invested. 
-    If it rises to $200, you have $2,000 (gain of $500).
+    **Example:** You own 10 shares of Apple at \$150/share = \$1,500 invested. 
+    If it rises to $200, you have \$2,000 (gain of $500).
     """)
 
 with tabs[1]:
