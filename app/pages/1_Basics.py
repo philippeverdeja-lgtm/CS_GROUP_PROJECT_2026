@@ -324,19 +324,18 @@ st.subheader("Getting Started")
 
 st.markdown("""
 1. **Decide your time horizon.** When do you need this money?
-   - Less than 2 years? → Stay in cash
-   - 5-10 years? → Medium risk (balanced fund)
-   - 10+ years? → Can handle more risk (stock-heavy)
+- Less than 2 years? → Stay in cash
+- 5-10 years? → Medium risk (balanced fund)
+- 10+ years? → Can handle more risk (stock-heavy)
 
 2. **Choose your strategy.** Most people benefit from:
-   - **Dollar-cost averaging (DCA):** Invest the same amount every month, regardless of price
-   - **Buy and hold:** Invest lump sum, ignore short-term noise
-   - **Rebalance annually:** Keep your allocation stable over time
+- **Dollar-cost averaging (DCA):** Invest the same amount every month, regardless of price
+- **Buy and hold:** Invest lump sum, ignore short-term noise
+- **Rebalance annually:** Keep your allocation stable over time
 
 3. **Start small.** Even 100 CHF/month compounds into serious wealth.
 
-4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash.
-   The market always recovers. History shows it.
+4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash. The market always recovers. History shows it.
 """)
 
 st.success(" You now understand the basics. Ready to experiment with the Portfolio Analyzer?")
