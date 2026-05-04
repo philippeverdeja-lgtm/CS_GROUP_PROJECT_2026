@@ -1,10 +1,10 @@
-"""
-This code is part of the Computer Science Project of group 11.05:
-Philippe Verdeja, Yannick Hafner, Remi de la Fortelle, Mara Ciglia and Sam Pellaud.
-It contains the "Homepage" of the website, with five sections describing each page and matching navigation buttons.
-The idea is to give the user a clear entry point that explains what every part of the website does.
-On top of that, the user can jump to any page either through these buttons or through the streamlit sidebar.
-"""
+
+#This code is part of the Computer Science Project of group 11.05:
+#Philippe Verdeja, Yannick Hafner, Remi de la Fortelle, Mara Ciglia and Sam Pellaud.
+#It contains the "Homepage" of the website, with five sections describing each page and matching navigation buttons.
+#The idea is to give the user a clear entry point that explains what every part of the website does.
+#On top of that, the user can jump to any page either through these buttons or through the streamlit sidebar.
+
 
 # This imports streamlit into the program
 import streamlit as st
