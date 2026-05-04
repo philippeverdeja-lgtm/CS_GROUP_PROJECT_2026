@@ -21,6 +21,8 @@ st.set_page_config(
 st.title("Investment Basics")
 st.markdown("Learn the fundamentals. Grow your money.")
 
+
+#This is a button to return to the homepage
 st.page_link("Home.py", label="Go to Homepage")
 
 st.divider()
@@ -60,16 +62,22 @@ st.markdown("""
 
 #two introducion columns
 col1, col2 = st.columns(2)
+
+#basic intoduciton
 with col1:
     st.markdown("""This guide covers the core concepts you need to understand investing and personal finance. 
-    Everything here builds on simple, everyday ideas—no jargon required.""")
+    Everything here builds on simple ideas.""")
 
+
+#text effect with st.info and **
 with col2:
     st.info("**Pro tip:** Understanding *why* money grows matters more than memorizing formulas.")
 
 st.divider()
 
-# What does the app do?
+
+
+# Bullet points of what the app does
 st.subheader("What This App Does")
 st.markdown("""
 With this app you can:
@@ -83,7 +91,7 @@ With this app you can:
 
 st.divider()
 
-# Core concepts
+#Here are the core concepts in two columns and titles and different text formats
 st.subheader("Core Concepts")
 
 col1, col2 = st.columns(2)
@@ -95,7 +103,7 @@ with col1:
 
     If you invest \$100 today, they might become \$108 in one year. If you keep \$100 in your pocket, they still are \$100 one year from now. The money you're not earning by not investing is called **opportunity cost**.
 
-    You also have to keep in mind that every year **Your money loses value** due to **inflation**!
+    You also have to keep in mind that every year **your money loses value** due to **inflation**!
 
     If you have \$100 today you can buy 100 apples but one year later, your \$100 might only buy 98 apples! Investments are one way of escaping inflation!
 
@@ -108,13 +116,15 @@ with col2:
     
     **Simple interest:** You earn the same amount every year.
     
-    **Compound interest:** You earn interest on your original money AND on the interest already earned. This gets exponential fast.
+    **Compound interest:** You earn interest on your original money **AND** on the interest already earned. This gets exponential fast.
     """)
 
 st.divider()
 
 col1, col2 = st.columns(2)
 
+
+#in two columns thw concept of risk
 with col1:
     st.markdown("### Risk & Return")
     st.markdown("""
@@ -122,9 +132,11 @@ with col1:
     
     Riskier investments (stocks, crypto) can grow fast but can also lose money.
     
-    The trade-off is real: you can't have both high returns *and* no risk.
+    You can't have both high returns *and* no risk.
     """)
     
+
+
 with col2:
     st.markdown("### Diversification")
     st.markdown("""
@@ -139,7 +151,10 @@ st.divider()
 # Asset types
 st.subheader("Types of Investments")
 
-tabs = st.tabs(["Stocks", "Bonds", "ETFs", "Cash"])
+
+#with st.tabs i can create different tabs such that the user can navigate through them
+
+tabs = st.tabs(["Stocks", "Bonds", "ETFs", "Cash"],)
 
 with tabs[0]:
     st.markdown("""
@@ -203,7 +218,7 @@ with tabs[3]:
     **Downside:** Doesn't keep up with inflation, so you slowly lose buying power over decades.
     """)
 
-st.markdown("---")
+st.divider()
 
 # Compound interest example
 st.subheader("Why Compound Interest is Magic")
