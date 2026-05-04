@@ -6,8 +6,10 @@ The idea is to give the user a quick way to find out what type of investor he is
 Each question gives 1 to 4 points and the higher the total at the end, the higher the user's risk tolerance.
 """
 
+
 # This imports streamlit
 import streamlit as st
+
 
 # Page configuration, title, subtitle and tab icon (logo without text)
 # Logo and tab icon by Claude
@@ -19,10 +21,11 @@ st.set_page_config(
 st.title("Investor Profile ")
 st.write("Answer these questions to find out what type of investor you are.")
 
+
 # Home button
 st.page_link("Home.py", label="Go to Homepage")
-
 st.divider()
+
 
 # Adds the logo of our website at the top right corner
 st.markdown("""
@@ -57,26 +60,25 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Initialize score for each questionary to 0 every time
-score = 0
 
 # Initialize score for each questionary to 0 every time
 score = 0
+
 
 # Question 1: Time Horizon
 st.write("**Question 1:** How long until you need this money?")
 
-#using st.radio alows to ask the question and so the user can select one answer
+# Using st.radio alows to ask the question and so the user can select one answer
 time_horizon = st.radio(
     "Choose one:",
-    ["Less than 3 years", "3-7 years", "7-15 years", "More than 15 years"],  #here are the different answer posibilities
-    key="q1"    #this is important because it stabilizes the qestionary, every widget has a unique key and stabilizes the widget's identity
-                #and preserves its state when other parameters chenge
-                #it basically makes sure that answer 1 stays in question 1, answer 2 in question 2 etc. so no values get mixed up
+    ["Less than 3 years", "3-7 years", "7-15 years", "More than 15 years"],  
+    key="q1"    # Important because it stabilizes the questionary, every widget has a unique key and stabilizes the 
+                # widget's identity, it preserves its state when other parameters chenge so no values get mixed up
 )
 
 
-#here are the answers attributed to a number of points with a simple if function
+# Here are the answers attributed to a number of points with a simple if function
+# Ever result is always added into the variable score
 if time_horizon == "Less than 3 years":
     score += 1
 elif time_horizon == "3-7 years":
@@ -86,11 +88,9 @@ elif time_horizon == "7-15 years":
 else:
     score += 4
 
-#ever result is always added into the variable score
 
+#The exact same is happening for all other questions up to question 7
 st.divider()
-
-#the same is happening for all other questions up to question 7
 
 
 # Question 2: Financial Cushion
@@ -116,6 +116,7 @@ else:
 
 st.divider()
 
+
 # Question 3: Loss Tolerance
 st.write("**Question 3:** Your portfolio drops 20% in one month. What do you do?")
 
@@ -139,6 +140,7 @@ else:
 
 st.divider()
 
+
 # Question 4: Investment Goal
 st.write("**Question 4:** What's your main investment goal?")
 
@@ -161,6 +163,7 @@ else:
 
 
 st.divider()
+
 
 # Question 5: Experience
 st.write("**Question 5:** How much investing experience do you have?")
@@ -187,6 +190,7 @@ else:
 
 st.divider()
 
+
 # Question 6: Monthly Investment Capacity
 st.write("**Question 6:** What % of monthly income can you invest comfortably?")
 
@@ -212,6 +216,7 @@ else:
 
 st.divider()
 
+
 # Question 7: Emotional Resilience
 st.write("**Question 7:** Your gains go up 30%, then back to zero. How do you feel?")
 
@@ -233,52 +238,43 @@ else:
     score += 4
 
 
-
-
-
 st.divider()
 
+
 # Question 8: Monthly Investment Amount
+
+# Here the user can put in his monthly amount he wants to invest the minimum value is 0, there is no max value
+# This is all stored in the variable "monthly_amount"
 st.write("**Question 8:** How much can you invest per month? (USD)")
 monthly_amount = st.number_input("Enter amount:", min_value = 0, step = 100, key="q8") #this is not a st.radio anymore,
 
-#here the user can put in his monthly amount he wants to invest the minimum value is 0, there is no max value for very rich people
-
-#on the right of the intput there is a button that allows to add +100
-
-#this is all stored in the variable "monthly_amount"
-
 
 st.divider()
 
 
-st.write(f"**Your Score: {score} / 28**")   #this just writes in numbers the score of the questionary 
-st.progress(score / 28) #this shows graphically the result 
+# Writes in numbers the score of the questionary and shows graphically the result 
+st.write(f"**Your Score: {score} / 28**")    
+st.progress(score / 28) 
 
 
-if st.button("Show My Profile", type="primary", width="stretch"):    # This is the button to see the results
-    
-    if monthly_amount == 0: # if the user didn't put in any amount, the appl blocks him before going furhter and shows an error message
-                            #such that he must first enter any amount
+# This is the button to see the results
+if st.button("Show My Profile", type="primary", width="stretch"):
 
+    # If the user didn't put in any amount, the appl blocks him before going furhter and shows an error message
+    if monthly_amount == 0: 
 
         st.warning("Please enter your monthly investment amount")
-
-        #if the amount is > 0 this goes:
     else:
 
-#first level, concervative
+# First level: Conservative
+# It is based on each score there are different levels from low to high scores
 
-            #based on each score there are different levels from low to high scores
+        # If the score after the questionary is higher than 10 the different variables # have these information in them       
+        if score <= 10: 
+            profile = "Conservative" 
 
-        if score <= 10: #if the score after the questionary is higher than 10 the different variables 
-                        # have these information in them
-
-
-            profile = "Conservative" #this variable is the name of the profile
-
+            # This Variable explains to the user what type of invesotr he is
             description = "You value safety over growth. You want predictable returns with minimal losses."
-            #this variable explains to the user what type of invesotr he is
 
             allocation = (
                 f"- 70% Bonds\n"
@@ -286,72 +282,53 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
                 f"- 10 Cash\n"
             )
 
-
-            #this proposes a simple portfolio allocation
-
+            # Proposition of a simple portfolio allocation with products the users could invest in and investments he should avoid
             products = "- Government bonds\n- Bond ETFs (iShares, Vanguard)\n- High-yield savings accounts"
-            #this gives example of products the users could invest in
-
             avoid = "- Individual stocks\n- Crypto\n- Leverage/margin trading"
-            #this gives the user advices on investments he should avoid
 
+            # Calculates a montly plan based on his monthly_amount and stores it in the variable monthly_plan 
             monthly_plan = (
-         f"- Bonds: $ {int(monthly_amount * 0.7)}\n"
-         f"- ETFs: $ {int(monthly_amount * 0.2)}\n"
-         f"- Cash: $ {int(monthly_amount * 0.1)}"
-         )
+                f"- Bonds: $ {int(monthly_amount * 0.7)}\n"
+                f"- ETFs: $ {int(monthly_amount * 0.2)}\n"
+                f"- Cash: $ {int(monthly_amount * 0.1)}"
+            )
 
-         #this calculates a montly plan based on his monthly_amount he put in at the end of the questionary and stores
-         #it in the variable monthly_plan 
-         #the variable is put into integer to be calculated
-
-                
-            
-            #the two last variables explains what are the pros and cons of this investment strategy and stores the description 
-            #in their variables
+            # Two last variables explain what are the pros and cons of this investment strategy 
             pros = "- Sleep well at night\n- Unlikely to panic\n- Stable and predictable"
-            
             cons = "- Low returns (2-4% yearly)\n- Inflation erodes value\n- May miss growth opportunities"
-            
-            #the same is the repeated for all the other investor profiles / investment strategies
 
 
+# Exactly the same is the repeated for all the other investor profiles / investment strategies
 
-#second level, balanced
+# Second level: Balanced
 
         elif score <= 14:
             profile = "Balanced"
-
             description = "You want both growth and safety. You accept some risk for better long-term returns."
-
+           
             allocation = (
                 f"- 50% Growth\n"
                 f"- 40% Bonds\n"
                 f"- 10% Cash\n"
             )
-            
 
-            
             products = "- Index ETFs (VTI, VTSAX)\n- Bond ETFs (BND, VBTLX)\n- Dividend ETFs"
-            
             avoid = "- Individual stocks (unless experienced)\n- Crypto/speculative assets\n- Frequent trading"
                         
             monthly_plan = (
-         f"- Growth: $ {int(monthly_amount * 0.5)}\n"
-         f"- Bonds: $ {int(monthly_amount * 0.4)}\n"
-         f"- Cash: $ {int(monthly_amount * 0.1)}"
-         )
+                f"- Growth: $ {int(monthly_amount * 0.5)}\n"
+                f"- Bonds: $ {int(monthly_amount * 0.4)}\n"
+                f"- Cash: $ {int(monthly_amount * 0.1)}"
+            )
 
             pros = "- Good growth (5-7% yearly)\n- Manageable volatility\n- Flexible and balanced"
-            
             cons = "- May feel conflicted during crashes\n- Temptation to 'do something'\n- Less growth than aggressive"
             
 
-#third level, growth
+# Third level: Growth
 
         elif score <= 21:
             profile = "Growth-Focused"
-
             description = "You're return-oriented and handle volatility. You believe in long-term investing."
            
             allocation = (
@@ -361,29 +338,23 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
 
             )
             
-            
-
-           
             products = "- Total market ETF (VTI, ITOT)\n- Tech ETF (QQQ)\n- International ETF (VXUS)\n- Dividend stocks"
-           
             avoid = "- Leverage/margin trading\n- Crypto (unless you understand it)\n- Over-concentrated bets\n- Day trading"
                       
             monthly_plan = (
-         f"- Growth: $ {int(monthly_amount * 0.75)}\n"
-         f"- Bonds: $ {int(monthly_amount * 0.2)}\n"
-         f"- Opportunistic: $ {int(monthly_amount * 0.05)}"
-         )
+                f"- Growth: $ {int(monthly_amount * 0.75)}\n"
+                f"- Bonds: $ {int(monthly_amount * 0.2)}\n"
+                f"- Opportunistic: $ {int(monthly_amount * 0.05)}"
+            )
 
             pros = "- High returns (8-10% yearly)\n- Weather downturns well\n- Build real wealth"
-           
             cons = "- Experience 20-30% drops regularly\n- Requires discipline\n- Temptation to over-trade"
             
 
-#fourth level, aggressive
+# Fourth level: Aggressive
 
         else:
             profile = "Aggressive"
-
             description = "You chase maximum returns and handle major swings. You have real investment experience."
             
             allocation = (
@@ -395,65 +366,58 @@ if st.button("Show My Profile", type="primary", width="stretch"):    # This is t
 
             )
             
-
-            
             products = "- Growth ETFs (QQQ, VUG)\n- Individual high-conviction stocks\n- Bitcoin/Ethereum (small portion)\n- Emerging markets ETF"
-            
             avoid = "- Leverage (unless experienced)\n- Penny stocks\n- 100% crypto portfolio\n- All-in on single stocks"
                         
             monthly_plan = (
-         f"- ETFs: $ {int(monthly_amount * 0.6)}\n"
-         f"- Growth Sectors: $ {int(monthly_amount * 0.2)}\n"
-         f"- Individual Stocks: $ {int(monthly_amount * 0.1)}\n"
-         f"- Crypto: $ {int(monthly_amount * 0.05)}\n"
-         f"- Cash: $ {int(monthly_amount * 0.05)}"
-         )
+                f"- ETFs: $ {int(monthly_amount * 0.6)}\n"
+                f"- Growth Sectors: $ {int(monthly_amount * 0.2)}\n"
+                f"- Individual Stocks: $ {int(monthly_amount * 0.1)}\n"
+                f"- Crypto: $ {int(monthly_amount * 0.05)}\n"
+                f"- Cash: $ {int(monthly_amount * 0.05)}"
+            )
 
             pros = "- Potential 10-15%+ returns yearly\n- See downturns as opportunities\n- Not constrained by traditional assets"
-            
             cons = "- Experience 40-50%+ drawdowns\n- Individual stock picks can fail\n- Requires discipline and risk management"
         
 
+        # This is the display of the results:
 
+        # Since all the results are stored in different variables, we just need to call them. Further since they are only 
+        # assigned in the different score levels, every variable is correctly assigned with the if statements. E.g. if score 
+        # is 15 then first level is not assigned so program goes to the second level where all variables are assigned to the strings
 
-        # This the displays th results.$
-        #since all the results are stored in different variables, here we just need to call them. Further since they are only 
-        #assigned in the different score levels, at the end of the questionary, every variable is correctly assigned with the if
-        #statements
-        #ex.  score = 15 
-        # first level is not assigned so program goes to the second level where all variables are assigned to the strings
-
-
-        st.title(f"Your Profile: :blue[_{profile}_]") #title with cool text effect from variable profile
-        st.write(f"**Description:** {description}") #variable description
+        # Title with cool text effect from variable profile
+        st.title(f"Your Profile: :blue[_{profile}_]") 
+        st.write(f"**Description:** {description}") 
         st.divider()
         
-        # Here are the pros and cons with subheaders
+        # The pros and cons with subheaders
         col1, col2 = st.columns(2)
         with col1:
             st.header(":green[**Strengths:**]")
-            st.write(pros)     #here also the variable is just pulled and displayed as text
+            st.write(pros)     
         with col2:
             st.header(":red[**Challenges:**]")
-            st.write(cons)#same
+            st.write(cons)
         st.divider()
         
-        # here is an portfolio allocation recommendantion
+        # Portfolio allocation recommendantion
         st.header("**Proposed Portfolio Allocation:**")
-        st.write(allocation) #same principle as the others
+        st.write(allocation)
         st.divider()
         
-        # Here are some propositions of products to integrate in the portfolio
+        # Some propositions of products to integrate in the portfolio
         st.header("**Investment Products to Consider:**")
-        st.write(products)# same as before
+        st.write(products)
         st.divider()
         
-        # Here are some recommendations of things to avoid
+        # Some recommendations of things to avoid
         st.header("**What to Avoid:**")
-        st.write(avoid)#same
+        st.write(avoid)
         st.divider()
         
-        # Here is a recommendation of how much to invest in what each month
+        # Recommendation of how much to invest in what each month
         st.header(f"**Your Monthly Plan (${monthly_amount:,}):**")
         st.markdown(monthly_plan)
         st.divider()
