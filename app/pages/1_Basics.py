@@ -333,9 +333,9 @@ st.markdown("""
    - **Buy and hold:** Invest lump sum, ignore short-term noise
    - **Rebalance annually:** Keep your allocation stable over time
 
-\n3. **Start small.** Even 100 CHF/month compounds into serious wealth.
+3. **Start small.** Even 100 CHF/month compounds into serious wealth.
 
-\n4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash.
+4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash.
    The market always recovers. History shows it.
 """)
 
