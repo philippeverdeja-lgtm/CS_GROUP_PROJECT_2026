@@ -6,8 +6,9 @@ The idea is to give a beginner the foundation he needs to understand investing b
 On top of that, the page covers compound interest, risk levels and diversification with concrete examples in plain language.
 """
 
-# Import streamlit
+# Import streamlit and pandas
 import streamlit as st
+import pandas as pd
 
 # Page configuration, title, subtitle and tab icon (logo without text)
 # Logo and tab icon by Claude
@@ -221,7 +222,7 @@ with tabs[3]:
 
 st.divider()
 
-# Compound interest example
+# Here is an example of compound iterests
 st.subheader("Why Compound Interest is Magic")
 
 st.markdown("""
@@ -230,22 +231,29 @@ This is the single most important concept in personal finance. Let me show you w
 
 col1, col2 = st.columns(2)
 
+
+#in the first column i used a table to illustrate the data
 with col1:
     st.markdown("**Scenario:** Invest 10,000 CHF at 7% annual return")
     
+
+    #this creates a data dictionary
     years_data = {
         "Year": [1, 5, 10, 20, 30],
         "Value": [10_700, 14_026, 19_672, 38_697, 76_123],
         "Growth": [700, 4_026, 9_672, 28_697, 66_123]
     }
     
-    import pandas as pd
+
+    #this convertes the dictionary to data frame
     df = pd.DataFrame(years_data)
     
+
+    #this is the displaying of data
     st.dataframe(
         df.style.format({
-            "Value": "CHF {:,.0f}",
-            "Growth": "CHF {:,.0f}"
+            "Value": "$ {:,.0f}",
+            "Growth": "$ {:,.0f}"
         }),
         use_container_width=True,
         hide_index=True
@@ -258,7 +266,7 @@ with col2:
     - After 20 years: roughly quadrupled (10k → 38.6k)
     - After 30 years: roughly 7.6x (10k → 76k)
     
-    You only added 10,000 CHF once. The rest came from compound growth.
+    You only added 10,000 $ once. The rest came from compound growth.
     
     **Key insight:** Time is your most valuable asset when you're young. 
     Starting 10 years earlier nearly doubles your final wealth.
