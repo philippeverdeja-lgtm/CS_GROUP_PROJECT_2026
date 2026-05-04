@@ -153,6 +153,7 @@ st.subheader("Types of Investments")
 
 
 #with st.tabs i can create different tabs such that the user can navigate through them
+#i need to use backsalshes so that the text has the correct format
 
 tabs = st.tabs(["Stocks", "Bonds", "ETFs", "Cash"],)
 
@@ -184,8 +185,8 @@ with tabs[1]:
     
     **Time horizon:** Varies (can be 1 year to 30+ years)
     
-    **Example:** Buy a government bond for $1,000 at 3% annual interest. 
-    You get $30/year for 10 years, then get your $1,000 back.
+    **Example:** Buy a government bond for \$1,000 at 3% annual interest. 
+    You get \$30/year for 10 years, then get your \$1,000 back.
     """)
 
 with tabs[2]:
