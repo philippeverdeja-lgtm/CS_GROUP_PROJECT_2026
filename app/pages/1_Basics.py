@@ -272,17 +272,17 @@ with col2:
     Starting 10 years earlier nearly doubles your final wealth.
     """)
 
-st.info("📌 This is why starting early (even with small amounts) beats starting late with big amounts.")
+st.info(" This is why starting early (even with small amounts) beats starting late with big amounts.")
 
-st.markdown("---")
+st.dvider()
 
-# Risk tiers
+# Here i explain the different risk levels and their characteristics
 st.subheader("Risk Levels Explained")
 
 risk_col1, risk_col2, risk_col3 = st.columns(3)
 
 with risk_col1:
-    st.markdown("### 🟢 Low Risk")
+    st.markdown("### Low Risk")
     st.markdown("""
     **Investments:** Cash, bonds, stable funds
     
@@ -294,7 +294,7 @@ with risk_col1:
     """)
 
 with risk_col2:
-    st.markdown("### 🟡 Medium Risk")
+    st.markdown("### Medium Risk")
     st.markdown("""
     **Investments:** Balanced ETFs (60% stocks, 40% bonds)
     
@@ -306,7 +306,7 @@ with risk_col2:
     """)
 
 with risk_col3:
-    st.markdown("### 🔴 High Risk")
+    st.markdown("### High Risk")
     st.markdown("""
     **Investments:** 100% stocks, growth ETFs, individual stocks
     
@@ -317,9 +317,9 @@ with risk_col3:
     **Downside:** Could lose half your money in bad years
     """)
 
-st.markdown("---")
+st.divider()
 
-# Getting started
+# This is the final text page, here i explain what we need to think about when investing
 st.subheader("Getting Started")
 
 st.markdown("""
@@ -328,15 +328,15 @@ st.markdown("""
    - 5-10 years? → Medium risk (balanced fund)
    - 10+ years? → Can handle more risk (stock-heavy)
 
-2. **Choose your strategy.** Most people benefit from:
+\n 2. **Choose your strategy.** Most people benefit from:
    - **Dollar-cost averaging (DCA):** Invest the same amount every month, regardless of price
    - **Buy and hold:** Invest lump sum, ignore short-term noise
    - **Rebalance annually:** Keep your allocation stable over time
 
-3. **Start small.** Even 100 CHF/month compounds into serious wealth.
+\n3. **Start small.** Even 100 CHF/month compounds into serious wealth.
 
-4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash.
+\n4. **Don't panic sell.** Biggest mistake people make? Selling when markets crash.
    The market always recovers. History shows it.
 """)
 
-st.success("💪 You now understand the basics. Ready to experiment with the Portfolio Analyzer?")
+st.success(" You now understand the basics. Ready to experiment with the Portfolio Analyzer?")
