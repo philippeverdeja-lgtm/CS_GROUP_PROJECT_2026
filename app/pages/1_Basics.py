@@ -169,7 +169,7 @@ with tabs[0]:
     **Time horizon:** 5+ years recommended
     
     **Example:** You own 10 shares of Apple at \$150/share = \$1,500 invested. 
-    If it rises to $200, you have \$2,000 (gain of $500).
+    If it rises to \$200, you have \$2,000 (gain of $500).
     """)
 
 with tabs[1]:
