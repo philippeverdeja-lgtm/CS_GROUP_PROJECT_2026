@@ -274,7 +274,7 @@ with col2:
 
 st.info(" This is why starting early (even with small amounts) beats starting late with big amounts.")
 
-st.dvider()
+st.divider()
 
 # Here i explain the different risk levels and their characteristics
 st.subheader("Risk Levels Explained")
