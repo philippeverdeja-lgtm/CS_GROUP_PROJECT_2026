@@ -375,8 +375,7 @@ if st.session_state.portfolio:
     st.session_state.portfolio = updated_rows
 else:
     st.info("Search for a stock first and see your analysis")
- #--------------------------------------------------------------------------------------------------------
-
+ 
 #The analyze button fetches live data for every stock and stores the results
 #in session state so switching time periods later doesn't trigger the fetch again
 st.markdown("")
