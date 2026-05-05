@@ -3,7 +3,7 @@ This code is part of the Computer Science Project of group 11.05:
 Philippe Verdeja, Yannick Hafner, Remi de la Fortelle, Mara Ciglia and Sam Pellaud.
 It contains the "Basics"-page, an educational guide split into core concepts, asset types and getting-started tips.
 The idea is to give a beginner the foundation he needs to understand investing before using the rest of the website.
-On top of that, the page covers compound interest, risk levels and diversification with concrete examples in plain language.
+The page covers compound interest, risk levels and diversification with concrete examples in plain language.
 """
 
 # Import streamlit and pandas
@@ -339,3 +339,6 @@ st.markdown("""
 """)
 
 st.success(" You now understand the basics. Ready to experiment with **Easy Investing?**")
+
+#Overall, this page is not very technical, it mainyl plain text in different layouts. It explains basic principles of invessting and 
+# and the idea behind it
