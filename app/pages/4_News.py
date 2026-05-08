@@ -60,7 +60,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-@st.cache_data(ttl=1800) #longer cache time works, since news aren't updated super frequently
+@st.cache_data(ttl=1800, show_spinner=False) #longer cache time works, since news aren't updated super frequently
 def get_headlines():
     import requests
     from bs4 import BeautifulSoup #to get the image of the news article
@@ -91,7 +91,7 @@ def get_index_change(ticker):
     change=((last-prev)/prev)*100
     return round(last, 2), round(change, 2)  #so that the numbers show up with rounded decimals
 
-@st.cache_data(ttl=300) #same logic as above for the cache, but since market data is updated more frequently, less time is put in the cache
+@st.cache_data(ttl=300, show_spinner=False) #same logic as above for the cache, but since market data is updated more frequently, less time is put in the cache
 def get_index_history(period): #this function is to create a graph of the different indices
     tickers=["^GSPC", "^STOXX", "^HSI", "^N225", "^KS200"]
     names={"^GSPC": "S&P 500", "^STOXX": "EuroStoxx 600", "^HSI": "Hang Seng", "^N225": "Nikkei 225", "^KS200": "Kospi 200"}
@@ -105,7 +105,7 @@ def get_index_history(period): #this function is to create a graph of the differ
     return pd.concat(frames).reset_index() #stacks all the individual ticker tables into one table
 
 
-@st.cache_data(ttl=300)  #main reason I used caches, since yfinance regularly crashes if one user calls upon it too much
+@st.cache_data(ttl=300, show_spinner=False)  #main reason I used caches, since yfinance regularly crashes if one user calls upon it too much
 def get_all_indices():
     tickers=["^GSPC", "^STOXX", "^HSI", "^N225", "^KS200"]  #selection of biggest tickers
     data=yf.download(tickers, period="5d", group_by="ticker")
@@ -124,7 +124,7 @@ def get_all_indices():
             results[ticker]=(None, None)
     return results
 
-@st.cache_data(ttl=300)  #same cache logic as above
+@st.cache_data(ttl=300, show_spinner=False)  #same cache logic as above
 def get_movers():
     gainers_data=yf.screen("day_gainers")  #pulls Yahoo Finance's own top gainers list
     gainers=[
